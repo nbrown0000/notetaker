@@ -1,0 +1,47 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login__header {
+  margin-bottom: 25px;
+  font-size: 1.5em;
+}
+
+.login__username {
+  margin: 5px;
+}
+
+.login__password {
+  margin: 5px;
+}
+
+.login__submit {
+  margin-top: 15px;
+}
+
+.login__submit-button {
+  font-size: 0.9em;
+}
+
+.login__register {
+  margin: 35px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login__register-message {
+  margin: 5px;
+  font-size: 0.9em;
+}
+
+.login__register-button {
+  margin: 5px;
+  font-size: 0.75em;
+}
