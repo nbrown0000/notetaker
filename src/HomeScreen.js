@@ -1,13 +1,15 @@
 import React from 'react';
+import Collection from "./Collection";
+import ActiveList from "./ActiveList";
+import "./HomeScreen.css"
 
 const HomeScreen = () => {
   return (
-    <div>
-      Home Screen
-    </div>
+    <main className="homescreen">
+      <Collection />
+      <ActiveList />
+    </main>
   )
 }
-
-// #104891 accent colour for active list
 
 export default HomeScreen;

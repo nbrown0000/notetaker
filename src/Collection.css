@@ -1,0 +1,10 @@
+.collection {
+  width: 20%;
+  height: 80vh;
+  background-color: #e4e4e4;
+  color: #545454;
+}
+
+.collection__header {
+  font-size: 1.2em;
+}

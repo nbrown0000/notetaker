@@ -1,0 +1,10 @@
+.activelist {
+  width: 30%;
+  height: 80vh;
+  background-color: #ffffff;
+  color: #545454;
+}
+
+.activelist__header {
+  font-size: 1.2em;
+}
