@@ -24,6 +24,4 @@ const Login = () => {
   )
 }
 
-// #104891 accent colour for active list
-
 export default Login;
