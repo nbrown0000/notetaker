@@ -16,7 +16,7 @@ class App extends React.Component {
         {this.state.username === '' ?
           <Login />
         :
-          <HomeScreen />
+          <HomeScreen username={this.state.username} />
         }
       </div>
     );
