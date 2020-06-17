@@ -1,10 +1,34 @@
 .activelist {
+  box-sizing: border-box;
   width: 30%;
   height: 80vh;
   background-color: #ffffff;
   color: #545454;
+  padding: 5px 35px;
 }
 
 .activelist__header {
+  display: flex;
   font-size: 1.2em;
+}
+
+.activelist__list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+}
+
+.activelist__item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+/* .activelist__item-checkbox {
+  
+} */
+
+.activelist__item-name {
+  padding-left: 2px;
 }

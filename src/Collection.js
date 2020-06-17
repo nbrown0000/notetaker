@@ -6,7 +6,7 @@ const Collection = ({ username }) => {
   return (
     <div className="collection">
       <div className="collection__header">
-        <img src={userIcon} width={80} />
+        <img src={userIcon} alt="User" width={80} />
         <h2 className="collection__header-title">{username}</h2>
       </div>
     </div>

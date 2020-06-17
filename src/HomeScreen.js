@@ -3,11 +3,11 @@ import Collection from "./Collection";
 import ActiveList from "./ActiveList";
 import "./HomeScreen.css"
 
-const HomeScreen = ({ username }) => {
+const HomeScreen = ({ username, activeList, onCheck }) => {
   return (
     <main className="homescreen">
       <Collection username={username} />
-      <ActiveList />
+      <ActiveList onCheck={onCheck} activeList={activeList} />
     </main>
   )
 }
