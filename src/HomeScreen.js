@@ -3,11 +3,18 @@ import Collection from "./Collection";
 import ActiveList from "./ActiveList";
 import "./HomeScreen.css"
 
-const HomeScreen = ({ username, activeList, onCheck }) => {
+const HomeScreen = ({ name, collection, activeList, onCheck, setActiveList }) => {
   return (
     <main className="homescreen">
-      <Collection username={username} />
-      <ActiveList onCheck={onCheck} activeList={activeList} />
+      <Collection
+        name={name}
+        collection={collection.map(el => el.title)}
+        setActiveList={setActiveList}
+      />
+      <ActiveList
+        onCheck={onCheck}
+        activeList={activeList}
+      />
     </main>
   )
 }
