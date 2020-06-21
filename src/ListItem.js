@@ -1,8 +1,6 @@
 import React from 'react';
 
 const ListItem = ({ item, onCheck }) => {
-
-  //TODO: Styling based on isDone attribute
   
   let nameStyle;
   if(item.isDone === true) {
@@ -19,7 +17,10 @@ const ListItem = ({ item, onCheck }) => {
         onClick={() => onCheck(item.name)}
         defaultChecked={item.isDone}
       />
-      <span className="activelist__item-name" style={nameStyle}> {item.name} </span>
+      <span
+        className="activelist__item-name"
+        style={nameStyle}
+      > {item.name} </span>
     </li>
   )
 }
