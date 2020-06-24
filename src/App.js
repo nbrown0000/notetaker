@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./Header";
 import Nav from "./Nav";
+import Main from "./Main";
 import Collection from "./Collection";
 import ActiveList from "./ActiveList";
 
@@ -85,14 +86,15 @@ class App extends React.Component {
           <>
             <Header name={this.state.user.name} />
             <Nav />
-            {/* <Main /> */}
+            <Main collection={this.state.collection} />
             {/* <Footer /> */}
+            
             {/* <Nav name={this.state.user.name} /> */}
             <main className="main">
-              <Collection 
+              {/* <Collection 
                 collection={this.state.collection}
                 setActiveList={this.setActiveList}
-              />
+              /> */}
 
               <ActiveList
                 activeList={this.state.activeList}
