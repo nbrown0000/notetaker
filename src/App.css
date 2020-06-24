@@ -1,4 +1,30 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+.main {
+  display: flex;
+  flex: 1;
+}
+
+.main > * {
+  display: flex;
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .main {
+    flex-direction: column;
+    line-height: 1.3em;
+  }
+}
+
+@media (min-width: 600px) {
+  .main {
+    flex-direction: row;
+    flex: 1;
+    line-height: 1.3em;
+  }
+}
