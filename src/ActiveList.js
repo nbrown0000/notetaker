@@ -4,18 +4,18 @@ import ListItem from "./ListItem";
 
 const ActiveList = ({ activeList, onCheck }) => {
   return (
-    <div className="activelist">
+    <section className="activelist">
       <ul className="activelist__list">
         {
-          activeList.list === undefined ?
-            <>Loading</>
+          activeList === undefined ?
+            <p className="activelist__loading">Loading</p>
           :
-            activeList.list.map((item,i) => {
+            activeList.map((item,i) => {
               return <ListItem item={item} key={i} onCheck={onCheck} />
             })
         }
       </ul>
-    </div>
+    </section>
   )
 }
 
