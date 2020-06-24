@@ -1,4 +1,4 @@
-.nav {
+.header {
   display: flex;
   flex-direction: row;
   margin: 0;
@@ -6,20 +6,20 @@
   background-color: #545454;
 }
 
-.nav__user {
+.header__user {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 0;
 }
 
-.nav__user-image {
+.header__user-image {
   width: 40px;
   height: 40px;
   margin: 0;
 }
 
-.nav__user-name {
+.header__user-name {
   margin: 0;
   font-size: 1.3em;
   padding-left: 5px;
