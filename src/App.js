@@ -1,37 +1,37 @@
 import React from 'react';
 import './App.css';
-import HomeScreen from "./HomeScreen";
+import Collection from "./Collection";
+import ActiveList from "./ActiveList";
+import Nav from "./Nav";
 import Login from "./Login";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: '',
+      user: {
+        "id": 1,
+        "name": "John Smith",
+        "email": "john@gmail.com",
+        "password": "cookies"
+      },
 
       collection: [
-        {
-          title: "shopping",
-          list: [
-            { name: 'bananas', isDone: false },
-            { name: 'bread', isDone: false },
-            { name: 'milk', isDone: false },
-            { name: 'sultana bran', isDone: false }
-          ]
-        },
-
-        {
-          title: "sean's birthday",
-          list: [
-            { name: 'cake', isDone: false },
-            { name: 'candles', isDone: false },
-            { name: 'balloons', isDone: false },
-            { name: 'bouncing castle', isDone: false }
-          ]
-        }
+        "shopping",
+        "sean's birthday",
+        "bbq day",
+        "bali trip",
+        "house move",
+        "life goals",
+        "gym schedule",
       ],
 
-      activeList: ''
+      activeList: [
+        { name: 'bananas', isDone: false },
+        { name: 'bread', isDone: false },
+        { name: 'milk', isDone: false },
+        { name: 'sultana bran', isDone: false }
+      ]
     }
   }
   componentDidMount() {
@@ -73,19 +73,27 @@ class App extends React.Component {
   }
 
   render() {   
+    console.log(this.state.user)
     
     return (
       <div className="App">
         {this.state.user === '' ?
           <Login setUser={this.setUser} onLogin={this.onLogin} />
         :
-          <HomeScreen
-            name={this.state.user.name}  
-            collection={this.state.collection}
-            activeList={this.state.activeList}
-            onCheck={this.toggleCheckmark}
-            setActiveList={this.setActiveList}
-          />
+          <>
+            <Nav name={this.state.user.name} />
+            <main className="main">
+              <Collection 
+                collection={this.state.collection}
+                setActiveList={this.setActiveList}
+              />
+
+              <ActiveList
+                activeList={this.state.activeList}
+                onCheck={this.toggleCheckmark}
+              />
+            </main>
+          </>
         }
       </div>
     );
