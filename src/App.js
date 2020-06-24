@@ -3,6 +3,7 @@ import './App.css';
 import Header from "./Header";
 import Nav from "./Nav";
 import Main from "./Main";
+import Footer from "./Footer";
 import Collection from "./Collection";
 import ActiveList from "./ActiveList";
 
@@ -87,20 +88,18 @@ class App extends React.Component {
             <Header name={this.state.user.name} />
             <Nav />
             <Main collection={this.state.collection} />
-            {/* <Footer /> */}
-            
+            <Footer />
+
             {/* <Nav name={this.state.user.name} /> */}
-            <main className="main">
               {/* <Collection 
                 collection={this.state.collection}
                 setActiveList={this.setActiveList}
               /> */}
 
-              <ActiveList
+              {/* <ActiveList
                 activeList={this.state.activeList}
                 onCheck={this.toggleCheckmark}
-              />
-            </main>
+              /> */}
           </>
         }
       </div>
