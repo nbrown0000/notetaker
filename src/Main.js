@@ -7,7 +7,10 @@ const Main = ({ collection }) => {
     <main className="main">
       <div className="main__heading">
         <h2 className="main__heading-title">Lists</h2>
-        <p className="main__heading-add">+</p>
+        <div className="main__heading-add">
+          <p className="main__heading-add-symbol">+</p>
+          <p className="main__heading-add-text">Add List</p>
+        </div>
       </div>
       <ul className="main__list">
         {collection.map((item,i) => {

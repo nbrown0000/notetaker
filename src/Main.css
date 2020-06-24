@@ -1,5 +1,6 @@
 .main {
-  background-color: cadetblue;
+  box-sizing: border-box;
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -11,10 +12,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-}
-
-.main__heading > * {
-  padding-right: 20px;
+  margin: 0;
 }
 
 .main__heading-title {
@@ -24,18 +22,33 @@
 }
 
 .main__heading-add {
+  cursor: pointer;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.main__heading-add-symbol {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+  font-size: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  background: #a5a5a5;
+  background: #545454;
   color: #f1f1f1;
   border-radius: 50%;
-  cursor: pointer;
+}
+
+.main__heading-add-text {
+  box-sizing: border-box;
+  margin: 0;
+  padding-left: 5px;
 }
 
 .main__list {
