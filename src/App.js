@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Collection from "./Collection";
 import ActiveList from "./ActiveList";
-import Nav from "./Nav";
+import Header from "./Header";
 import Login from "./Login";
 
 class App extends React.Component {
@@ -81,7 +81,11 @@ class App extends React.Component {
           <Login setUser={this.setUser} onLogin={this.onLogin} />
         :
           <>
-            <Nav name={this.state.user.name} />
+            <Header name={this.state.user.name} />
+            {/* <Nav /> */}
+            {/* <Main /> */}
+            {/* <Footer /> */}
+            {/* <Nav name={this.state.user.name} /> */}
             <main className="main">
               <Collection 
                 collection={this.state.collection}
