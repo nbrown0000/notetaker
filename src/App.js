@@ -3,10 +3,6 @@ import './App.css';
 import Header from "./Header";
 import Nav from "./Nav";
 import Main from "./Main";
-import Footer from "./Footer";
-import Collection from "./Collection";
-import ActiveList from "./ActiveList";
-
 import Login from "./Login";
 
 class App extends React.Component {
@@ -35,7 +31,9 @@ class App extends React.Component {
         { name: 'bread', isDone: false },
         { name: 'milk', isDone: false },
         { name: 'sultana bran', isDone: false }
-      ]
+      ],
+
+      completed: ['clean house']
     }
   }
   componentDidMount() {
@@ -85,21 +83,16 @@ class App extends React.Component {
           <Login setUser={this.setUser} onLogin={this.onLogin} />
         :
           <>
+
             <Header name={this.state.user.name} />
             <Nav />
-            <Main collection={this.state.collection} />
-            <Footer />
+            <Main
+              collection={this.state.collection}
+              activeList={this.state.activeList}
+              completed={this.state.completed}
+            />
+            {/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
-            {/* <Nav name={this.state.user.name} /> */}
-              {/* <Collection 
-                collection={this.state.collection}
-                setActiveList={this.setActiveList}
-              /> */}
-
-              {/* <ActiveList
-                activeList={this.state.activeList}
-                onCheck={this.toggleCheckmark}
-              /> */}
           </>
         }
       </div>

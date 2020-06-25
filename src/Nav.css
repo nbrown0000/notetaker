@@ -1,11 +1,17 @@
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0px;
-  border-bottom: 1px solid #545454;
+  
+  margin: 10px;
 }
 
 .nav__timeselection {
   font-size: 1em;
+  margin: 0 0 10px 0;
+}
+
+.nav__innercontainer {
+  /* border-bottom: 1px solid #bebebe; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

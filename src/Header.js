@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Header.css"
-import userIcon from "./user_anonymous.jpg";
+import userIcon from "./icons/097-user.png";
 
 const Header = ({ name }) => {
   return (
