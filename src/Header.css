@@ -1,27 +1,35 @@
 .header {
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin: 0;
   padding: 10px;
   background-color: #545454;
-}
-
-.header__user {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0;
+  box-sizing: border-box;
 }
 
 .header__user-image {
-  width: 40px;
-  height: 40px;
+  box-sizing: border-box;
   margin: 0;
+  padding: 5px;
+  width: 35px;
+  height: 35px;
+  
   background-color: white;
+  border-radius: 50%;
 }
 
 .header__user-name {
   margin: 0;
   font-size: 1.3em;
   padding-left: 5px;
+  color: white;
+}
+
+.header__logout {
+  margin: 0;
+  padding-top: 5px;
+  color: white;
+  margin-left: auto;
+  cursor: pointer;
 }
