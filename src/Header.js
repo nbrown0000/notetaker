@@ -2,13 +2,12 @@ import React from 'react';
 import "./Header.css"
 import userIcon from "./icons/097-user.png";
 
-const Header = ({ name }) => {
+const Header = ({ firstname }) => {
   return (
     <header className="header">
-      <div className="header__user">
-        <img className="header__user-image" src={userIcon} alt="User" />
-        <h2 className="header__user-name">{name}</h2>
-      </div>
+      <img className="header__user-image" src={userIcon} alt="User" />
+      <h2 className="header__user-name">{firstname}</h2>
+      <p className="header__logout">Log out</p>
     </header>
   )
 }
