@@ -9,30 +9,14 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: {
-        "id": 1,
-        "name": "John Smith",
-        "email": "john@gmail.com",
-        "password": "cookies"
-      },
-
-      collection: [
-        "shopping",
-        "sean's birthday",
-        "bbq day",
-        "bali trip",
-        "house move",
-        "life goals",
-        "gym schedule",
-      ],
-
+      user: '',
+      collection: '',
       activeList: [
         { name: 'bananas', isDone: false },
         { name: 'bread', isDone: false },
         { name: 'milk', isDone: false },
         { name: 'sultana bran', isDone: false }
       ],
-
       completed: ['clean house']
     }
   }
@@ -70,12 +54,28 @@ class App extends React.Component {
     })
   }
 
+  fetchUserCollections = () => {
+    const user = this.state.user;
+    const data = {
+      id: user.id
+    }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/getcollections/", options)
+    .then(response => response.json())
+    .then(data => this.setState({ collection: data}))
+  }
+
   setUser = (user) => {
     this.setState({ user: user })
+    this.fetchUserCollections();
   }
 
   render() {   
-    console.log(this.state.user)
+    // console.log(this.state.user)
     
     return (
       <div className="App">
@@ -84,7 +84,7 @@ class App extends React.Component {
         :
           <>
 
-            <Header name={this.state.user.name} />
+            <Header firstname={this.state.user.firstname} />
             <Nav />
             <Main
               collection={this.state.collection}
