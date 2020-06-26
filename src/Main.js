@@ -1,65 +1,59 @@
 import React from 'react';
 import "./Main.css";
-import calendarIcon from "./icons/011-planner.png";
+import ActiveList from "./ActiveList";
+import Collection from "./Collection";
 
 class Main extends React.Component {// = ({ collection, activeList, onCollectionClicked }) => {
+  constructor(props) {
+    super(props)
+    this.state = {
+      route: 'collection',
+      activeTitle: ''
+    }
+  }
+
+  onCollectionClicked = (item) => {
+    this.props.onCollectionClicked(item.id);
+    this.setState({
+      route: 'activeList',
+      activeTitle: item.name
+    });
+  }
   
   render () {
-
-    const activeListStyle = {
-      "background": "#FFF"
-    }
     
     const {
       activeList,
       collection,
-      onCollectionClicked
+      // onCollectionClicked,
+      onClickActiveListItem
     } = this.props;
-
-    
-
-    // console.log('activeList', activeList)
 
     return (
 
       <main className="main">
 
-        <div className="main__heading">
+        {/* <div className="main__heading">
           <h2 className="main__heading-title">Lists</h2>
           <div className="main__heading-add">
             <p className="main__heading-add-symbol">+</p>
-            {/* <p className="main__heading-add-text">Add List</p> */}
+            <p className="main__heading-add-text">Add List</p>
           </div>
-        </div>
+        </div> */}
 
-        <ul className="main__collection">
-          {collection === '' ?
-            <></> :
-          collection.map((item,i) => {
-            return (
-              <li key={i} className="main__collection-item" onClick={() => onCollectionClicked(item.id)}>
-                <img alt="item" src={calendarIcon} width="15em" />
-                {item.name}
-              </li>)
-          })}
-        </ul>
-
-        <ul style={activeListStyle} className="main__activelist">
-          {activeList.length === 0 ?
-            <></>
+        {
+          this.state.route === 'collection' ?
+            <Collection collection={collection} onCollectionClicked={this.onCollectionClicked} />
           :
-            activeList.map((item,i) => {
-              return (
-                <li className="main__activelist-item" key={i}>
-                  {item.name}
-                </li>)
-            })
-          }
-        </ul>
+            <ActiveList
+              activeTitle={this.state.activeTitle}
+              activeList={activeList}
+              onClickActiveListItem={onClickActiveListItem}/>
+        }
 
-        <section className="main__completed">
+        {/* <section className="main__completed">
           <ul className="main__completed-list"><li>Completed</li></ul>
-        </section>
+        </section> */}
         
       </main>
   )

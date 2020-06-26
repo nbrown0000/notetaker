@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from "./Header";
-import Nav from "./Nav";
+// import Nav from "./Nav";
 import Main from "./Main";
 import Login from "./Login";
 
@@ -17,27 +17,6 @@ class App extends React.Component {
   }
   componentDidMount() {
 
-  }
-
-  toggleCheckmark = (name) => {
-    this.setState(prevState => ({
-      activeList: {
-        ...prevState.activeList,
-        list: prevState.activeList.list.map(el => {
-          return (
-            el.name === name && el.isDone 
-            ?
-            {...el, isDone: false}
-            :
-              el.name === name && !el.isDone
-              ?
-                {...el, isDone: true}
-              :
-                el
-          )
-        })
-      }
-    }))
   }
 
   setActiveList = (item) => {
@@ -81,6 +60,10 @@ class App extends React.Component {
       .then(data => this.setState({ activeList: data }))
   }
 
+  onClickActiveListItem = (activeListItemId) => {
+    console.log("toggle", activeListItemId)
+  }
+
   render() {   
     // console.log(this.state.user)
     // console.table(this.state.collection)
@@ -93,12 +76,13 @@ class App extends React.Component {
           <>
 
             <Header firstname={this.state.user.firstname} />
-            <Nav />
+            {/* <Nav /> */}
             <Main
               collection={this.state.collection}
               activeList={this.state.activeList}
               completed={this.state.completed}
               onCollectionClicked={this.onCollectionClicked}
+              onClickActiveListItem={this.onClickActiveListItem}
             />
             {/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
