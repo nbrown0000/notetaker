@@ -11,19 +11,12 @@ class App extends React.Component {
     this.state = {
       user: '',
       collection: '',
-      activeList: [
-        { name: 'bananas', isDone: false },
-        { name: 'bread', isDone: false },
-        { name: 'milk', isDone: false },
-        { name: 'sultana bran', isDone: false }
-      ],
+      activeList: [],
       completed: ['clean house']
     }
   }
   componentDidMount() {
-    if(this.state.activeList === '') {
-      this.setState({ activeList: this.state.collection[0] })
-    }
+
   }
 
   toggleCheckmark = (name) => {
@@ -74,8 +67,23 @@ class App extends React.Component {
     this.fetchUserCollections();
   }
 
+  onCollectionClicked = (collectionId) => {
+    const data = {
+      id: collectionId
+    }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/getlists/", options)
+      .then(response => response.json())
+      .then(data => this.setState({ activeList: data }))
+  }
+
   render() {   
     // console.log(this.state.user)
+    // console.table(this.state.collection)
     
     return (
       <div className="App">
@@ -90,6 +98,7 @@ class App extends React.Component {
               collection={this.state.collection}
               activeList={this.state.activeList}
               completed={this.state.completed}
+              onCollectionClicked={this.onCollectionClicked}
             />
             {/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
