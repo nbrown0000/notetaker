@@ -1,0 +1,40 @@
+.activelist {
+  list-style: none;
+  margin: 0;
+  padding: 15px;
+  line-height: 1.5em;
+}
+
+.activelist__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.activelist__header-title {
+  margin: 0;
+  margin-right: auto;
+}
+
+.activelist__header img {
+  height: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.activelist__list {
+  list-style: none;
+  align-items: center;
+  margin: 15px 0;
+  padding: 0;
+  background-color: #e2e2e2;
+}
+
+.activelist__list > * {
+  border-top: 1px solid rgba(84,84,84,0.5);
+  padding: 3px 10px;
+}
+
+.activelist__list:nth-last-child(1) {
+  border-bottom: 1px solid rgba(84,84,84,0.5);
+}
