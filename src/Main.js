@@ -5,6 +5,10 @@ import calendarIcon from "./icons/011-planner.png";
 class Main extends React.Component {// = ({ collection, activeList, onCollectionClicked }) => {
   
   render () {
+
+    const activeListStyle = {
+      "background": "#FFF"
+    }
     
     const {
       activeList,
@@ -40,7 +44,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
           })}
         </ul>
 
-        <ul className="main__activelist">
+        <ul style={activeListStyle} className="main__activelist">
           {activeList.length === 0 ?
             <></>
           :
