@@ -79,19 +79,7 @@
   padding-right: 5px;
 }
 
-.main__activelist {
-  list-style: none;
-  margin: 0;
-  padding: 15px 15px 15px 12px;
-  line-height: 1.5em;
-}
 
-.main__activelist-item {
-  border-bottom: 1px solid #d2d2d2;
-  display: flex;
-  align-items: center;
-  padding: 3px 0 3px 10px;
-}
 
 .main__completed {
   list-style: none;
