@@ -25,7 +25,6 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     const {
       activeList,
       collection,
-      // onCollectionClicked,
       onClickActiveListItem
     } = this.props;
 
@@ -43,17 +42,17 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
 
         {
           this.state.route === 'collection' ?
-            <Collection collection={collection} onCollectionClicked={this.onCollectionClicked} />
+            <Collection
+              collection={collection}
+              onCollectionClicked={this.onCollectionClicked}
+            />
           :
             <ActiveList
               activeTitle={this.state.activeTitle}
               activeList={activeList}
-              onClickActiveListItem={onClickActiveListItem}/>
+              onClickActiveListItem={onClickActiveListItem}
+            />
         }
-
-        {/* <section className="main__completed">
-          <ul className="main__completed-list"><li>Completed</li></ul>
-        </section> */}
         
       </main>
   )

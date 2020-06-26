@@ -67,7 +67,7 @@
   line-height: 1.5em;
 }
 
-.main__collection-item {
+.main__collection > * {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -75,12 +75,7 @@
   padding: 3px 0;
 }
 
-.main__collection-item:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.main__collection-item > * {
+.main__collection > * > * {
   padding-right: 5px;
 }
 

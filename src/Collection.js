@@ -18,6 +18,10 @@ const Collection = ({ collection, onCollectionClicked }) => {
             </li>)
         })
       }
+      <li>
+        <img alt="item" src={calendarIcon} width="15em" />
+        Completed
+      </li>
     </ul>
   )
 }
