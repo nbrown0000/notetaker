@@ -1,10 +1,13 @@
 import React from 'react';
 import "./Main.css";
-import calendarIcon from "./icons/163-calendar.png";
+import calendarIcon from "./icons/011-planner.png";
 
 const Main = ({ collection, activeList }) => {
 
   return (
+    collection === '' || activeList === '' ?
+    <></>
+    :
     <main className="main">
       <div className="main__heading">
         <h2 className="main__heading-title">Lists</h2>
@@ -18,7 +21,7 @@ const Main = ({ collection, activeList }) => {
           return (
             <li key={i} className="main__list-item">
               <img alt="item" src={calendarIcon} width="15em" />
-              {item}
+              {item.name}
             </li>)
         })}
       </ul>
