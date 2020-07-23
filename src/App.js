@@ -64,6 +64,10 @@ class App extends React.Component {
     console.log("toggle", activeListItemId)
   }
 
+  onClickLogOut = () => {
+    this.setState({ user: '' })
+  }
+
   render() {   
     // console.log(this.state.user)
     // console.table(this.state.collection)
@@ -75,7 +79,10 @@ class App extends React.Component {
         :
           <>
 
-            <Header firstname={this.state.user.firstname} />
+            <Header
+              firstname={this.state.user.firstname}
+              onClickLogOut={this.onClickLogOut}
+            />
             {/* <Nav /> */}
             <Main
               collection={this.state.collection}
