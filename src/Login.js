@@ -7,13 +7,13 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: ''
     }
   }
 
-  onEmailChange = (event) => {
-    this.setState({ email: event.target.value })
+  onUsernameChange = (event) => {
+    this.setState({ username: event.target.value })
   }
 
   onPasswordChange = (event) => {
@@ -21,12 +21,12 @@ class Login extends React.Component {
   }
 
   onLogin = () => {
-    const { email, password } = this.state;
-    if(email === '' || password === '') {
+    const { username, password } = this.state;
+    if(username === '' || password === '') {
       alert("Must enter a username and password!"); return;
     }
     const data = {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password
     }
     const options = {
@@ -52,8 +52,8 @@ class Login extends React.Component {
       <div className="login">
         <p className="login__header"><b>Log in</b> to acess your notes</p>
         <p className="login__username">
-          <label>Email:</label>
-          <input onChange={this.onEmailChange} />
+          <label>Username:</label>
+          <input onChange={this.onUsernameChange} />
         </p>
         <p className="login__password">
           <label>Password:</label>
