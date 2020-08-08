@@ -1,0 +1,33 @@
+.notes {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0;
+  padding: 20px 50px;
+  background-color: #D8D8D8;
+}
+
+@media (min-width: 601px) {
+  .lists {
+    flex: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .lists {
+    flex: 1;
+  }
+}
+
+.notes__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.6em;
+  font-size: 1.2em;
+}
+
+.notes__item {
+  /* margin: 0;
+  padding: 0; */
+}
