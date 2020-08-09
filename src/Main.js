@@ -10,49 +10,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     super(props)
     this.state = {
       lists: '',
-      // activeList: ''
-      activeList: [
-        {
-            "note_id": 1,
-            "body": "onions",
-            "list_id": 1
-        },
-        {
-            "note_id": 2,
-            "body": "bacon",
-            "list_id": 1
-        },
-        {
-            "note_id": 3,
-            "body": "bananas",
-            "list_id": 1
-        },
-        {
-            "note_id": 4,
-            "body": "milk",
-            "list_id": 1
-        },
-        {
-            "note_id": 5,
-            "body": "eggs",
-            "list_id": 1
-        },
-        {
-            "note_id": 6,
-            "body": "bread",
-            "list_id": 1
-        },
-        {
-            "note_id": 7,
-            "body": "cheese",
-            "list_id": 1
-        },
-        {
-            "note_id": 8,
-            "body": "apples",
-            "list_id": 1
-        }
-    ]
+      activeList: ''
     }
   }
 

@@ -2,13 +2,15 @@ import React from 'react';
 import './App.css';
 import Main from "./Main";
 import Login from "./Login";
+import Register from "./Register";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: {user_id: '1'}
-      // user: ''
+      route: 'login',
+      // user: {user_id: '1'}
+      user: ''
     }
   }
 
@@ -17,7 +19,11 @@ class App extends React.Component {
   }
 
   onClickLogOut = () => {
-    this.setState({ user: '' })
+    this.setState({ user: '', route: 'login' })
+  }
+
+  changeRoute = (route) => {
+    this.setState({ route: route })
   }
 
   render() {   
@@ -25,11 +31,19 @@ class App extends React.Component {
     return (
       <div className="App">
         {
-        this.state.user === ''
+        this.state.route === 'login'
         ?
-          <Login setUser={this.setUser} onLogin={this.onLogin} />
+          <Login
+            setUser={this.setUser}
+            onLogin={this.onLogin}
+            changeRoute={this.changeRoute}
+          />
         :
-          <Main user={this.state.user} onClickLogOut={this.onClickLogOut} />
+          this.state.route === 'register'
+          ?
+            <Register changeRoute={this.changeRoute} />
+          :
+            <Main user={this.state.user} onClickLogOut={this.onClickLogOut} />
         }
       </div>
     );
