@@ -14,6 +14,20 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }
   }
 
+  setActiveList = (list_id) => {
+    const data = {
+      list_id: list_id
+    }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/getnotes/", options)
+      .then(response => response.json())
+      .then(data => this.setState({ activeList: data }))
+  }
+
   componentDidMount() {
     const data = {
       user_id: this.props.user.user_id
@@ -25,7 +39,13 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }
     fetch("http://localhost:3100/getlists/", options)
       .then(response => response.json())
-      .then(data => this.setState({ lists: data }))
+      .then(data => this.setState({
+        lists: data
+      }, () => {
+        if(this.state.lists[0]) {
+          this.setActiveList(this.state.lists[0].list_id)
+        }
+      }))
   }
 
   onListClicked = (item) => {
