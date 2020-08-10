@@ -60,7 +60,7 @@ class Login extends React.Component {
         </p>
         <p className="login__password">
           <label>Password:</label>
-          <input onChange={this.onPasswordChange} />
+          <input type="password" onChange={this.onPasswordChange} />
         </p>
         <p className="login__submit">
           <button className="login__submit-button" onClick={this.onLogin}>Login</button>

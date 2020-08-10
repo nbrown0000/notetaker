@@ -49,7 +49,6 @@ class Register extends React.Component {
         throw new Error("Unable to register user."); }
     })
     .then(user => {
-      this.props.setUser(user)
       this.props.changeRoute('login')
     })
     .catch(err => console.log(err))
@@ -70,7 +69,7 @@ class Register extends React.Component {
         </p>
         <p className="login__password">
           <label>Password:</label>
-          <input onChange={this.onPasswordChange} />
+          <input type="password" onChange={this.onPasswordChange} />
         </p>
         <p className="login__submit">
           <button className="login__submit-button" onClick={this.onRegister}>Register</button>
