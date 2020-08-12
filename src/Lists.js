@@ -1,6 +1,5 @@
 import React from 'react'
 import "./Lists.css";
-import plusIcon from "./icons/add.png";
 
 class Lists extends React.Component {
   constructor(props) {
@@ -17,14 +16,9 @@ class Lists extends React.Component {
 
   render() {
     
-
-
-    const iconSize = "18px";
-    const listsAddStyle = {
-      visibility: "visible"
-    }
     const { onAddItemToList, lists } = this.props;
     const { itemToAdd } = this.state;
+    const inputStyle = { width: "70%" }
 
     return (
       <section className="lists">
@@ -44,16 +38,10 @@ class Lists extends React.Component {
           })
         }
         <li className="lists__add">
-          <img
-            src={plusIcon}
-            alt="plus"
-            width={iconSize}
-            height={iconSize}
-          />
           <input
-            style={listsAddStyle}
+            style={inputStyle}
             onChange={this.handleItemChange}
-            placeholder="Add Item"
+            placeholder="Add a List"
             type="text"
           />
           <button

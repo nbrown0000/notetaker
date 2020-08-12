@@ -3,27 +3,32 @@
   flex: 3;
   flex-direction: column;
   margin: 0;
-  padding: 20px 50px;
+  padding: 15px 30px;
   background-color: #c2c2c2;
+  font-size: 18px;
 }
 
 .lists__add {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 0;
   padding: 0;
 }
 
 .lists__add > * {
-  margin-right: 5px;
+  margin: 8px 0 0 0;
   padding: 0;
 }
 
 .lists__add > input {
-  box-sizing: border-box;
-  width: 90%;
-  font-size: 0.8em;
+  margin-left: -8px;
+  font-size: 16px;
+}
+
+.lists__add > button {
+  margin-right: -8px;
+  font-size: 15px;
 }
 
 @media (min-width: 601px) {
@@ -44,8 +49,6 @@
   padding: 0;
   list-style: none;
   line-height: 1.6em;
-  font-size: 1.2em;
-  /* background-color: #f1f1f1; */
 }
 
 .lists__active-item {
