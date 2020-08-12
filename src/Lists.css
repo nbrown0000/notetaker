@@ -7,6 +7,25 @@
   background-color: #c2c2c2;
 }
 
+.lists__add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.lists__add > * {
+  margin-right: 5px;
+  padding: 0;
+}
+
+.lists__add > input {
+  box-sizing: border-box;
+  width: 90%;
+  font-size: 0.8em;
+}
+
 @media (min-width: 601px) {
   .lists {
     flex: 1;

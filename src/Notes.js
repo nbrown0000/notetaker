@@ -2,18 +2,11 @@ import React from 'react';
 import "./Notes.css";
 
 const Notes = ({ activeList }) => {
-  
-  // let nameStyle;
-  // if(item.isDone === true) {
-  //   nameStyle = { textDecoration: "line-through" }
-  // } else {
-  //   nameStyle = { textDecoration: "none" }
-  // }
 
   return (
     <section className="notes">
       {
-      activeList === '' ?
+      activeList.length === 0 ?
         <>
           No notes found!
         </>

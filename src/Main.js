@@ -9,8 +9,29 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   constructor(props) {
     super(props)
     this.state = {
-      lists: '',
-      activeList: ''
+      lists: [],
+      activeList: []
+    }
+  }
+
+  getLists = () => {
+    const data = {
+      user_id: this.props.user.user_id
+    }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/getlists/", options)
+      .then(response => response.json())
+      .then(data => this.setState({ lists: data }))
+  }
+
+  componentDidMount() {
+    this.getLists()
+    if(this.state.lists[0]) {
+      this.setActiveList(this.state.lists[0].list_id)
     }
   }
 
@@ -28,25 +49,27 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       .then(data => this.setState({ activeList: data }))
   }
 
-  componentDidMount() {
+  onAddItemToList = (item) => {
+    
     const data = {
-      user_id: this.props.user.user_id
+      user_id: this.props.user.user_id,
+      title: item
     }
     const options = {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     }
-    fetch("http://localhost:3100/getlists/", options)
-      .then(response => response.json())
-      .then(data => this.setState({
-        lists: data
-      }, () => {
-        if(this.state.lists[0]) {
-          this.setActiveList(this.state.lists[0].list_id)
-        }
-      }))
+    fetch("http://localhost:3100/addlist/", options)
+    .then(response => {
+      if(response.ok) {
+        this.getLists()
+      }
+    })
+    
   }
+
+  
 
   onListClicked = (item) => {
     // console.log("Clicked " + item.title)
@@ -78,6 +101,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
           <Lists
             lists={this.state.lists}
             onListClicked={this.onListClicked}
+            onAddItemToList={this.onAddItemToList}
           />
           <Notes
             activeList={this.state.activeList}
@@ -87,6 +111,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
         <Footer />
 
         {/* Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
+        {/* Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
       </main>
   )
       }
