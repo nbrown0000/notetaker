@@ -1,11 +1,12 @@
 import React from 'react'
 import "./Lists.css";
+import listIcon from "./icons/311-file-4.png";
+import deleteIcon from "./icons/164-multiply.png";
 
 class Lists extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listsAddVisible: false,
       itemToAdd: ''
     }
   }
@@ -19,6 +20,7 @@ class Lists extends React.Component {
     const { onAddItemToList, lists } = this.props;
     const { itemToAdd } = this.state;
     const inputStyle = { width: "70%" }
+    const deleteStyle = { visibility: "hidden" }
 
     return (
       <section className="lists">
@@ -32,8 +34,12 @@ class Lists extends React.Component {
                 className="lists__active-item"
                 onClick={() => this.props.onListClicked(item)}
               >
-                <p>{item.title}</p>
-                <p>10</p>
+                <p className="lists__active-name">
+                  <img src={listIcon} width="18px" alt="" />
+                  {item.list.title}
+                </p>
+                <p><img src={deleteIcon} style={deleteStyle} width="18px" alt="" /></p>
+                <p className="lists__active-count">{item.count}</p>
               </li>)
           })
         }
