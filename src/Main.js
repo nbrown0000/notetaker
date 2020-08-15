@@ -15,9 +15,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   }
 
   getLists = () => {
-    const data = {
-      user_id: this.props.user.user_id
-    }
+    const data = { user_id: this.props.user.user_id }
     const options = {
       method: "POST",
       body: JSON.stringify(data),
@@ -28,8 +26,8 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       .then(data => this.setState({ lists: data }))
   }
 
-  componentDidMount() {
-    this.getLists()
+  async componentDidMount() {
+    await this.getLists()
     if(this.state.lists[0]) {
       this.setActiveList(this.state.lists[0].list_id)
     }
@@ -50,7 +48,6 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   }
 
   onAddItemToList = (item) => {
-    
     const data = {
       user_id: this.props.user.user_id,
       title: item
@@ -61,21 +58,11 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       headers: { "Content-Type": "application/json" }
     }
     fetch("http://localhost:3100/addlist/", options)
-    .then(response => {
-      if(response.ok) {
-        this.getLists()
-      }
-    })
-    
+    .then(response => { if(response.ok) { this.getLists() }})
   }
 
-  
-
   onListClicked = (item) => {
-    // console.log("Clicked " + item.title)
-    const data = {
-      list_id: item.list_id
-    }
+    const data = { list_id: item.list_id }
     const options = {
       method: "POST",
       body: JSON.stringify(data),
@@ -85,18 +72,21 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       .then(response => response.json())
       .then(data => this.setState({ activeList: data }))
   }
+
+  componentDidUpdate() {
+    // console.table(this.state.lists)
+  }
   
   render () {
 
     return (
-
       <main className="main">
 
         <Header
           user={this.props.user}
           onClickLogOut={this.props.onClickLogOut}
         />
-        
+
         <div className="main__center">
           <Lists
             lists={this.state.lists}
@@ -110,8 +100,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
 
         <Footer />
 
-        {/* Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
-        {/* Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
+        {/* Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
       </main>
   )
       }
