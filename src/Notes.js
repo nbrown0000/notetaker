@@ -1,5 +1,7 @@
 import React from 'react';
 import "./Notes.css";
+import noteIcon from "./icons/document-4.png";
+import deleteIcon from "./icons/garbage.png";
 
 class Notes extends React.Component {
   constructor(props) {
@@ -13,10 +15,15 @@ class Notes extends React.Component {
     this.setState({ itemToAdd: event.target.value })
   }
 
+  
+
   render() {
-    const inputStyle = { width: "70%" }
     const title = this.props.activeList.title || ''
     const notes = this.props.activeList.notes || []
+    
+    const inputStyle = { width: "70%" }
+    // const deleteIconStyle = { visibility: "visible" }
+    
     
     // console.log(this.state.itemToAdd)
 
@@ -28,7 +35,16 @@ class Notes extends React.Component {
             {notes.map((note,i) => {
               return (
               <li className="notes__item" key={i}>
+                <img src={noteIcon} width="15px" alt="" />
                 {note.body}
+                <img
+                  onClick={() => this.props.deleteNote(note)}
+                  // style={deleteIconStyle}
+                  className="notes__item-delete"
+                  src={deleteIcon}
+                  width="15px"
+                  alt=""
+                />
               </li>
               )
             })}

@@ -101,6 +101,20 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }})
   }
 
+  deleteNote = (item) => {
+    const data = { note_id: item.note_id }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/deletenote/", options)
+    .then(response => { if(response.ok) {
+      this.getNotes();
+      this.getLists();
+    }})
+  }
+
   componentDidUpdate() {
     // console.table(this.state.lists)
   }
@@ -124,12 +138,13 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
           <Notes
             activeList={this.state.activeList}
             AddToNotes={this.AddToNotes}
+            deleteNote={this.deleteNote}
           />
         </div>
 
         <Footer />
 
-        {/* Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
+        {/* <div>Icons made by <a href="https://www.flaticon.com/authors/chanut" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
       </main>
   )
       }
