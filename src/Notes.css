@@ -27,9 +27,10 @@
 }
 
 .notes__item-delete {
+  padding: 3px;
   margin-left: auto;
   cursor: pointer;
-  opacity: 10%;
+  opacity: 25%;
 }
 
 .notes__item-delete:hover {
