@@ -14,7 +14,19 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }
   }
 
-  getLists = () => {
+  getNotes = (callback) => {
+    const data = { list_id: this.state.activeList.list_id }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/getnotes/", options)
+      .then(response => response.json())
+      .then(data => this.setState({ activeList: data }, callback))
+  }
+
+  getLists = (callback) => {
     const data = { user_id: this.props.user.user_id }
     const options = {
       method: "POST",
@@ -23,20 +35,19 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }
     fetch("http://localhost:3100/getlists/", options)
       .then(response => response.json())
-      .then(data => this.setState({ lists: data }))
+      .then(data => this.setState({ lists: data }, callback))
   }
 
-  async componentDidMount() {
-    await this.getLists()
-    if(this.state.lists[0]) {
-      this.setActiveList(this.state.lists[0].list_id)
-    }
+  componentDidMount() {
+    this.getLists(function() {
+      if(this.state.lists[0]) {
+        this.setActiveList(this.state.lists[0].list.list_id)
+      }
+    }) 
   }
 
   setActiveList = (list_id) => {
-    const data = {
-      list_id: list_id
-    }
+    const data = { list_id: list_id }
     const options = {
       method: "POST",
       body: JSON.stringify(data),
@@ -62,7 +73,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   }
 
   onListClicked = (item) => {
-    const data = { list_id: item.list_id }
+    const data = { list_id: item.list.list_id }
     const options = {
       method: "POST",
       body: JSON.stringify(data),
@@ -71,6 +82,23 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     fetch("http://localhost:3100/getnotes/", options)
       .then(response => response.json())
       .then(data => this.setState({ activeList: data }))
+  }
+
+  AddToNotes = (item) => {
+    const data = {
+      list_id: this.state.activeList.list_id,
+      body: item
+    }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/addnote/", options)
+    .then(response => { if(response.ok) {
+      this.getNotes();
+      this.getLists();
+    }})
   }
 
   componentDidUpdate() {
@@ -95,6 +123,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
           />
           <Notes
             activeList={this.state.activeList}
+            AddToNotes={this.AddToNotes}
           />
         </div>
 
