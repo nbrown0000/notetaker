@@ -28,7 +28,7 @@
 
 .notes__item-delete {
   padding: 3px;
-  margin-left: auto;
+  /* margin-left: auto; */
   cursor: pointer;
   opacity: 25%;
 }

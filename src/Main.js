@@ -101,8 +101,8 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }})
   }
 
-  deleteNote = (item) => {
-    const data = { note_id: item.note_id }
+  deleteNote = (note) => {
+    const data = { note_id: note.note_id }
     const options = {
       method: "POST",
       body: JSON.stringify(data),
@@ -111,6 +111,21 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     fetch("http://localhost:3100/deletenote/", options)
     .then(response => { if(response.ok) {
       this.getNotes();
+      this.getLists();
+    }})
+  }
+
+  deleteList = (list) => {
+    console.log("Delete: ", list.list.list_id)
+    const data = { list_id: list.list.list_id }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/deletelist/", options)
+    .then(response => { if(response.ok) {
+      this.setActiveList(this.state.lists[0].list.list_id)
       this.getLists();
     }})
   }
@@ -134,6 +149,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
             lists={this.state.lists}
             onListClicked={this.onListClicked}
             onAddItemToList={this.onAddItemToList}
+            deleteList={this.deleteList}
           />
           <Notes
             activeList={this.state.activeList}

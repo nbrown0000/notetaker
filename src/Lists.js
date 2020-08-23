@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Lists.css";
 import listIcon from "./icons/list.png";
-import deleteIcon from "./icons/164-multiply.png";
+import deleteIcon from "./icons/garbage.png";
 
 class Lists extends React.Component {
   constructor(props) {
@@ -20,7 +20,6 @@ class Lists extends React.Component {
     const { onAddItemToList, lists } = this.props;
     const { itemToAdd } = this.state;
     const inputStyle = { width: "70%" }
-    const deleteStyle = { visibility: "hidden" }
 
     return (
       <section className="lists">
@@ -38,9 +37,17 @@ class Lists extends React.Component {
                   <p className="lists__active-name">
                     <img src={listIcon} width="15px" alt="" />
                     {item.list.title}
+                    <img
+                      onClick={() => this.props.deleteList(item)}
+                      className="lists__active-delete"
+                      src={deleteIcon}
+                      width="15px"
+                      alt=""
+                    />
                   </p>
-                  <p><img src={deleteIcon} style={deleteStyle} width="18px" alt="" /></p>
                   <p className="lists__active-count">{item.count}</p>
+                  
+                  
                 </li>)
             })
           }

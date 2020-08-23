@@ -23,7 +23,12 @@
 .lists__active-item {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  /* justify-items: flex-end; */
+  justify-content: flex-start;
+}
+
+.lists__active-item:hover {
+  font-weight: 500;
 }
 
 .lists__active-item:hover {
@@ -47,9 +52,21 @@
 }
 
 .lists__active-count {
+  /* background: chartreuse; */
   display: flex;
-  justify-content: flex-end;
-  width: 65px;
+  /* margin-right: 20px; */
+  /* margin-left: auto; */
+}
+
+.lists__active-delete {
+  padding: 3px;
+  
+  cursor: pointer;
+  opacity: 10%;
+}
+
+.lists__active-delete:hover {
+  opacity: 90%;
 }
 
 .lists__add {
