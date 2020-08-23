@@ -9,14 +9,23 @@ class Notes extends React.Component {
     }
   }
 
+  handleItemChange = event => {
+    this.setState({ itemToAdd: event.target.value })
+  }
+
   render() {
     const inputStyle = { width: "70%" }
+    const title = this.props.activeList.title || ''
+    const notes = this.props.activeList.notes || []
+    
+    // console.log(this.state.itemToAdd)
 
     return (
       <section className="notes">
+        <h3>{title}</h3>
         {
           <ul className="notes__list">
-            {this.props.activeList.map((note,i) => {
+            {notes.map((note,i) => {
               return (
               <li className="notes__item" key={i}>
                 {note.body}
@@ -26,12 +35,12 @@ class Notes extends React.Component {
             <li className="notes__add">
               <input
                 style={inputStyle}
-                // onChange={this.handleItemChange}
+                onChange={this.handleItemChange}
                 placeholder="Add a Note"
                 type="text"
               />
               <button
-                // onClick={() => onAddItemToNote(itemToAdd)}
+                onClick={() => this.props.AddToNotes(this.state.itemToAdd)}
               >Add</button>
             </li>
           </ul>

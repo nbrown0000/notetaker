@@ -8,6 +8,11 @@
   font-size: 18px;
 }
 
+.lists > h3 {
+  margin: 0;
+  padding: 10px 0;
+}
+
 .lists__active {
   margin: 0;
   padding: 0;

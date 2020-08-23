@@ -8,6 +8,11 @@
   font-size: 18px;
 }
 
+.notes > h3 {
+  margin: 0;
+  padding: 10px 0;
+}
+
 @media (min-width: 601px) {
   .lists {
     flex: 1;

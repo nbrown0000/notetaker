@@ -24,41 +24,42 @@ class Lists extends React.Component {
 
     return (
       <section className="lists">
-      <ul className="lists__active">
-        {
-        lists.length === 0 ? <></> :
-        lists.map((item,i) => {
-            return (
-              <li
-                key={i}
-                className="lists__active-item"
-                onClick={() => this.props.onListClicked(item)}
-              >
-                <p className="lists__active-name">
-                  <img src={listIcon} width="18px" alt="" />
-                  {item.list.title}
-                </p>
-                <p><img src={deleteIcon} style={deleteStyle} width="18px" alt="" /></p>
-                <p className="lists__active-count">{item.count}</p>
-              </li>)
-          })
-        }
-        <li className="lists__add">
-          <input
-            style={inputStyle}
-            onChange={this.handleItemChange}
-            placeholder="Add a List"
-            type="text"
-          />
-          <button
-            onClick={() => onAddItemToList(itemToAdd)}
-          >Add</button>
-        </li>
-        {/* <li>
-          <img alt="item" src={calendarIcon} width="15em" />
-          Completed
-        </li> */}
-      </ul>
+        <h3>Your List</h3>
+        <ul className="lists__active">
+          {
+          lists.length === 0 ? <></> :
+          lists.map((item,i) => {
+              return (
+                <li
+                  key={i}
+                  className="lists__active-item"
+                  onClick={() => this.props.onListClicked(item)}
+                >
+                  <p className="lists__active-name">
+                    <img src={listIcon} width="18px" alt="" />
+                    {item.list.title}
+                  </p>
+                  <p><img src={deleteIcon} style={deleteStyle} width="18px" alt="" /></p>
+                  <p className="lists__active-count">{item.count}</p>
+                </li>)
+            })
+          }
+          <li className="lists__add">
+            <input
+              style={inputStyle}
+              onChange={this.handleItemChange}
+              placeholder="Add a List"
+              type="text"
+            />
+            <button
+              onClick={() => onAddItemToList(itemToAdd)}
+            >Add</button>
+          </li>
+          {/* <li>
+            <img alt="item" src={calendarIcon} width="15em" />
+            Completed
+          </li> */}
+        </ul>
       </section>
     )
   }
