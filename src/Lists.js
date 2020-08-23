@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Lists.css";
-import listIcon from "./icons/311-file-4.png";
+import listIcon from "./icons/list.png";
 import deleteIcon from "./icons/164-multiply.png";
 
 class Lists extends React.Component {
@@ -36,7 +36,7 @@ class Lists extends React.Component {
                   onClick={() => this.props.onListClicked(item)}
                 >
                   <p className="lists__active-name">
-                    <img src={listIcon} width="18px" alt="" />
+                    <img src={listIcon} width="15px" alt="" />
                     {item.list.title}
                   </p>
                   <p><img src={deleteIcon} style={deleteStyle} width="18px" alt="" /></p>

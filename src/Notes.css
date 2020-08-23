@@ -13,6 +13,29 @@
   padding: 10px 0;
 }
 
+.notes__item {
+  display: flex;
+  align-items: center;
+}
+
+.notes__item:hover {
+  font-weight: 500;
+}
+
+.notes__item > img {
+  margin-right: 5px;
+}
+
+.notes__item-delete {
+  margin-left: auto;
+  cursor: pointer;
+  opacity: 10%;
+}
+
+.notes__item-delete:hover {
+  opacity: 90%;
+}
+
 @media (min-width: 601px) {
   .lists {
     flex: 1;
