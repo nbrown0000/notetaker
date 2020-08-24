@@ -12,14 +12,24 @@ class Lists extends React.Component {
     }
   }
 
+  onInputKeypress = (e) => {
+    if(e.keyCode === 13) {
+      this.props.onAddItemToList(this.state.itemToAdd)
+      this.setState({ itemToAdd: '' })
+    }
+  }
+
+  onInputButton = () => {
+    this.props.onAddItemToList(this.state.itemToAdd)
+  }
+
   handleItemChange = (event) => {
     this.setState({ itemToAdd: event.target.value })
   }
 
   render() {
     
-    const { onAddItemToList, lists } = this.props;
-    const { itemToAdd } = this.state;
+    const { lists } = this.props;
     const inputStyle = { width: "70%" }
 
     return (
@@ -55,13 +65,15 @@ class Lists extends React.Component {
           <li className="lists__add">
             <img src={plusIcon} alt="" />
             <input
+              value={this.state.itemToAdd}
               style={inputStyle}
               onChange={this.handleItemChange}
               placeholder="Add a List"
               type="text"
+              onKeyUp={this.onInputKeypress.bind(this)}
             />
             <button
-              onClick={() => onAddItemToList(itemToAdd)}
+              onClick={() => this.onInputButton()}
             >Add</button>
           </li>
           {/* <li>

@@ -116,7 +116,6 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   }
 
   deleteList = (list) => {
-    console.log("Delete: ", list.list.list_id)
     const data = { list_id: list.list.list_id }
     const options = {
       method: "POST",
