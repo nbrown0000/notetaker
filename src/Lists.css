@@ -96,6 +96,7 @@
 .lists__add > button {
   flex-grow: 1;
   font-size: 15px;
+  opacity: 50%;
 }
 
 @media (min-width: 601px) {
