@@ -21,6 +21,7 @@ class Lists extends React.Component {
 
   onInputButton = () => {
     this.props.onAddItemToList(this.state.itemToAdd)
+    this.setState({ itemToAdd: '' })
   }
 
   handleItemChange = (event) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import "./Notes.css";
 import noteIcon from "./icons/document-4.png";
 import deleteIcon from "./icons/garbage.png";
+import plusIcon from "./icons/icons8-plus-240.png";
 
 class Notes extends React.Component {
   constructor(props) {
@@ -9,6 +10,18 @@ class Notes extends React.Component {
     this.state = {
       itemToAdd: ''
     }
+  }
+
+  onInputKeypress = (e) => {
+    if(e.keyCode === 13) {
+      this.props.AddToNotes(this.state.itemToAdd)
+      this.setState({ itemToAdd: '' })
+    }
+  }
+
+  onInputButton = () => {
+    this.props.AddToNotes(this.state.itemToAdd)
+    this.setState({ itemToAdd: '' })
   }
 
   handleItemChange = event => {
@@ -49,14 +62,17 @@ class Notes extends React.Component {
               )
             })}
             <li className="notes__add">
+              <img src={plusIcon} alt="" />
               <input
+                onKeyUp={this.onInputKeypress.bind(this)}
+                value={this.state.itemToAdd}
                 style={inputStyle}
                 onChange={this.handleItemChange}
                 placeholder="Add a Note"
                 type="text"
               />
               <button
-                onClick={() => this.props.AddToNotes(this.state.itemToAdd)}
+                onClick={() => this.onInputButton()}
               >Add</button>
             </li>
           </ul>
