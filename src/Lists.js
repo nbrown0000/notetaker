@@ -2,6 +2,7 @@ import React from 'react'
 import "./Lists.css";
 import listIcon from "./icons/list.png";
 import deleteIcon from "./icons/garbage.png";
+import plusIcon from "./icons/icons8-plus-240.png";
 
 class Lists extends React.Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class Lists extends React.Component {
             })
           }
           <li className="lists__add">
+            <img src={plusIcon} alt="" />
             <input
               style={inputStyle}
               onChange={this.handleItemChange}
