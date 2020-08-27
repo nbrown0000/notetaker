@@ -63,7 +63,9 @@ class Lists extends React.Component {
                 </li>)
             })
           }
-          <li className="lists__add">
+        </ul>
+        <ul className="lists__add">
+          <li className="lists__add-item">
             <img src={plusIcon} alt="" />
             <input
               value={this.state.itemToAdd}
@@ -77,10 +79,6 @@ class Lists extends React.Component {
               onClick={() => this.onInputButton()}
             >Add</button>
           </li>
-          {/* <li>
-            <img alt="item" src={calendarIcon} width="15em" />
-            Completed
-          </li> */}
         </ul>
       </section>
     )

@@ -143,19 +143,18 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
           onClickLogOut={this.props.onClickLogOut}
         />
 
-        <div className="main__center">
-          <Lists
-            lists={this.state.lists}
-            onListClicked={this.onListClicked}
-            onAddItemToList={this.onAddItemToList}
-            deleteList={this.deleteList}
-          />
-          <Notes
-            activeList={this.state.activeList}
-            AddToNotes={this.AddToNotes}
-            deleteNote={this.deleteNote}
-          />
-        </div>
+        <Lists
+          lists={this.state.lists}
+          onListClicked={this.onListClicked}
+          onAddItemToList={this.onAddItemToList}
+          deleteList={this.deleteList}
+        />
+        
+        <Notes
+          activeList={this.state.activeList}
+          AddToNotes={this.AddToNotes}
+          deleteNote={this.deleteNote}
+        />
 
         <Footer />
 

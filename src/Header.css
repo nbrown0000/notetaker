@@ -1,23 +1,19 @@
 .header {
+  border: 1px solid green;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #D8D8D8;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  align-items: center;
-  margin: 0;
-  padding: 15px 15px 0 15px;
-  box-sizing: border-box;
-  height: 50px;
+  align-items: center;;
+  padding: 10px;
 }
 
 .header__user-image {
-  box-sizing: border-box;
   margin: 0;
-  padding: 5px;
-  width: 35px;
-  height: 35px;
-  
-  /* background-color: white; */
-  /* border-radius: 50%; */
+  padding: 0;
+  width: 25px;
+  height: 25px;
 }
 
 .header__user-name {
@@ -25,13 +21,22 @@
   font-size: 1.3em;
   font-weight: 500;
   padding-left: 5px;
-  /* color: white; */
 }
 
 .header__logout {
   margin: 0;
-  padding-top: 5px;
-  /* color: white; */
   margin-left: auto;
   cursor: pointer;
+}
+
+@media (min-width: 481px) {
+  .header {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    
+  }
 }
