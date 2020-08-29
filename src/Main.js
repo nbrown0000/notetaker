@@ -100,6 +100,10 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       this.getLists();
     }})
   }
+  
+  editNote = (note) => {
+    console.log("Editing ", note)
+  }
 
   deleteNote = (note) => {
     const data = { note_id: note.note_id }
@@ -154,6 +158,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
           activeList={this.state.activeList}
           AddToNotes={this.AddToNotes}
           deleteNote={this.deleteNote}
+          editNote={this.editNote}
         />
 
         <Footer />

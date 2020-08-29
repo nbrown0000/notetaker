@@ -1,8 +1,8 @@
 import React from 'react';
 import "./Notes.css";
-import noteIcon from "./icons/document-4.png";
-import deleteIcon from "./icons/garbage.png";
+import Note from "./Note";
 import plusIcon from "./icons/icons8-plus-240.png";
+
 
 class Notes extends React.Component {
   constructor(props) {
@@ -46,18 +46,12 @@ class Notes extends React.Component {
         <ul className="notes__list">
           {notes.map((note,i) => {
             return (
-            <li className="notes__item" key={i}>
-              <img src={noteIcon} width="15px" alt="" />
-              {note.body}
-              <img
-                onClick={() => this.props.deleteNote(note)}
-                // style={deleteIconStyle}
-                className="notes__item-delete"
-                src={deleteIcon}
-                width="15px"
-                alt=""
+              <Note
+                note={note}
+                key={i}
+                editNote={this.props.editNote}
+                deleteNote={this.props.deleteNote}
               />
-            </li>
             )
           })}
         </ul>

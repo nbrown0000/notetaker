@@ -25,18 +25,27 @@
   align-items: center;
 }
 
+.notes__item-icon,
+.notes__item-text,
+.notes__item-edit,
+.notes__item-delete
+ {
+  margin-right: 5px;
+}
+
 .notes__item:hover {
   font-weight: 500;
 }
 
-.notes__item > img {
-  margin-right: 5px;
-}
-
+.notes__item-edit,
 .notes__item-delete {
   margin: 3px;
   cursor: pointer;
-  opacity: 25%;
+  opacity: 10%;
+}
+.notes__item-edit:hover,
+.notes__item-delete:hover {
+  opacity: 90%;
 }
 
 .notes__add {
@@ -72,11 +81,6 @@
   opacity: 50%;
 }
 
-
-
-.notes__item-delete:hover {
-  opacity: 90%;
-}
 
 @media (min-width: 481px) {
   .notes {
