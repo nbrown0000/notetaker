@@ -55,7 +55,9 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }
     fetch("http://localhost:3100/getnotes/", options)
       .then(response => response.json())
-      .then(data => this.setState({ activeList: data }))
+      .then(data => {
+        this.setState({ activeList: data })
+    })
   }
 
   onAddItemToList = (item) => {
@@ -73,15 +75,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   }
 
   onListClicked = (item) => {
-    const data = { list_id: item.list.list_id }
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
-    fetch("http://localhost:3100/getnotes/", options)
-      .then(response => response.json())
-      .then(data => this.setState({ activeList: data }))
+    this.setActiveList(item.list.list_id)
   }
 
   AddToNotes = (item) => {
@@ -102,7 +96,23 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   }
   
   editNote = (note) => {
-    console.log("Editing ", note)
+    // console.log("Editing ", note)
+  }
+
+  saveNote = (note) => {
+    const data = {
+      note_id: note.note_id,
+      body: note.body
+    }
+    const options = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    }
+    fetch("http://localhost:3100/updatenote/", options)
+    .then(response => { if(response.ok) {
+      this.getNotes();
+    }})
   }
 
   deleteNote = (note) => {
@@ -132,11 +142,8 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       this.getLists();
     }})
   }
-
-  componentDidUpdate() {
-    // console.table(this.state.lists)
-  }
   
+
   render () {
 
     return (
@@ -159,14 +166,15 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
           AddToNotes={this.AddToNotes}
           deleteNote={this.deleteNote}
           editNote={this.editNote}
+          saveNote={this.saveNote}
         />
 
         <Footer />
 
         {/* <div>Icons made by <a href="https://www.flaticon.com/authors/chanut" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
       </main>
-  )
-      }
+    )
+  }
 }
 
 export default Main;

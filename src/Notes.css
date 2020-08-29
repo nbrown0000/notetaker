@@ -5,10 +5,10 @@
   flex-direction: column;
   margin: 0;
   padding: 0;
-  font-size: 18px;
 }
 
 .notes > h3 {
+  font-size: 21px;
   margin: 0;
   padding: 0 0 10px 0;
 }
@@ -22,15 +22,41 @@
 
 .notes__item {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  width: 100%;
+  /* border: 1px solid blue; */
 }
 
 .notes__item-icon,
 .notes__item-text,
 .notes__item-edit,
-.notes__item-delete
- {
-  margin-right: 5px;
+.notes__item-delete {
+  margin: 0 10px;
+}
+
+.notes__item-text {
+  font-size: 16px;
+}
+
+.notes__item-text > input {
+  width: 120px;
+  border: 1px solid lightgray;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.notes__item-text > button {
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+.notes__item-text > button:hover {
+  font-weight: 500;
 }
 
 .notes__item:hover {
@@ -71,13 +97,13 @@
 
 .notes__add-item > input {
   flex-grow: 1;
-  font-size: 16px;
+  /* font-size: 16px; */
   opacity: 50%;
 }
 
 .notes__add-item > button {
   flex-grow: 1;
-  font-size: 15px;
+  /* font-size: 15px; */
   opacity: 50%;
 }
 

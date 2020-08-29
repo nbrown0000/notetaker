@@ -3,13 +3,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  /* font-size: 16px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
 .lists > h3 {
+  font-size: 21px;
   margin: 0;
   padding: 0 0 10px 0;
 }
@@ -87,12 +88,12 @@
 
 .lists__add-item > input {
   flex-grow: 1;
-  font-size: 16px;
+  /* font-size: 16px; */
   opacity: 50%;
 }
 
 .lists__add-item > button {
-  font-size: 15px;
+  /* font-size: 15px; */
   opacity: 50%;
 }
 

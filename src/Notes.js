@@ -28,29 +28,30 @@ class Notes extends React.Component {
     this.setState({ itemToAdd: event.target.value })
   }
 
-  
+  compareNotes = (a,b) => {
+    if(a.note_id < b.note_id) { return -1; }
+    if(a.note_id > b.note_id) { return 1; }
+    return 0
+  }
 
   render() {
     const title = this.props.activeList.title || ''
     const notes = this.props.activeList.notes || []
     
     const inputStyle = { width: "70%" }
-    // const deleteIconStyle = { visibility: "visible" }
-    
-    
-    // console.log(this.state.itemToAdd)
 
     return (
       <section className="notes">
         <h3>{title}</h3>
         <ul className="notes__list">
-          {notes.map((note,i) => {
+          {notes.sort(this.compareNotes).map((note,i) => {
             return (
               <Note
                 note={note}
                 key={i}
                 editNote={this.props.editNote}
                 deleteNote={this.props.deleteNote}
+                saveNote={this.props.saveNote}
               />
             )
           })}
