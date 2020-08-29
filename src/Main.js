@@ -14,13 +14,17 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }
   }
 
-  getNotes = (callback) => {
-    const data = { list_id: this.state.activeList.list_id }
-    const options = {
+  setOptions = (data) => {
+    return {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     }
+  }
+
+  getNotes = (callback) => {
+    const data = { list_id: this.state.activeList.list_id }
+    const options = this.setOptions(data);
     fetch("http://localhost:3100/getnotes/", options)
       .then(response => response.json())
       .then(data => this.setState({ activeList: data }, callback))
@@ -28,11 +32,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
 
   getLists = (callback) => {
     const data = { user_id: this.props.user.user_id }
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
+    const options = this.setOptions(data);
     fetch("http://localhost:3100/getlists/", options)
       .then(response => response.json())
       .then(data => this.setState({ lists: data }, callback))
@@ -48,11 +48,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
 
   setActiveList = (list_id) => {
     const data = { list_id: list_id }
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
+    const options = this.setOptions(data);
     fetch("http://localhost:3100/getnotes/", options)
       .then(response => response.json())
       .then(data => {
@@ -65,11 +61,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       user_id: this.props.user.user_id,
       title: item
     }
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
+    const options = this.setOptions(data);
     fetch("http://localhost:3100/addlist/", options)
     .then(response => { if(response.ok) { this.getLists() }})
   }
@@ -83,11 +75,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       list_id: this.state.activeList.list_id,
       body: item
     }
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
+    const options = this.setOptions(data);
     fetch("http://localhost:3100/addnote/", options)
     .then(response => { if(response.ok) {
       this.getNotes();
@@ -104,11 +92,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       note_id: note.note_id,
       body: note.body
     }
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
+    const options = this.setOptions(data);
     fetch("http://localhost:3100/updatenote/", options)
     .then(response => { if(response.ok) {
       this.getNotes();
@@ -117,11 +101,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
 
   deleteNote = (note) => {
     const data = { note_id: note.note_id }
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
+    const options = this.setOptions(data);
     fetch("http://localhost:3100/deletenote/", options)
     .then(response => { if(response.ok) {
       this.getNotes();
@@ -131,11 +111,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
 
   deleteList = (list) => {
     const data = { list_id: list.list.list_id }
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
+    const options = this.setOptions(data);
     fetch("http://localhost:3100/deletelist/", options)
     .then(response => { if(response.ok) {
       this.setActiveList(this.state.lists[0].list.list_id)
