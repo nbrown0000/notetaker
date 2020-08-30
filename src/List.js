@@ -1,4 +1,5 @@
 import React from 'react'
+import "./List.css";
 import listIcon from "./icons/list.png";
 import deleteIcon from "./icons/garbage.png";
 import editIcon from "./icons/pencil.png";
@@ -57,38 +58,34 @@ class List extends React.Component {
 
     return (
       <li
-        className="lists__active-item"
+        className="list"
         onClick={() => this.props.onListClicked(item)}
       >
 
-        <p className="lists__active-name">
-          <img
-            className="lists__active-name-icon"
-            src={listIcon}
-            width="15px"
-            alt=""
-          />
-          <img
-            className="lists__active-name-edit"
-            style={buttonStyle}
-            onClick={() => this.editListText()}
-            src={editIcon}
-            width="15px"
-            alt=""
-          />
-          <span className="lists__active-name-text">
-            {mode==='display' ? textDisplay : textEdit}
-          </span>
-          <img
-            style={buttonStyle}
-            onClick={() => this.props.deleteList(item)}
-            className="lists__active-name-delete"
-            src={deleteIcon}
-            width="15px"
-            alt=""
-          />
-        </p>
-        <p className="lists__active-count">{item.count}</p>
+        <img
+          className="list__icon"
+          src={listIcon}
+          alt=""
+        />
+        <img
+          className="list__edit"
+          style={buttonStyle}
+          onClick={() => this.editListText()}
+          src={editIcon}
+          alt=""
+        />
+        <span className="list__text">
+          {mode==='display' ? textDisplay : textEdit}
+        </span>
+        <img
+          style={buttonStyle}
+          onClick={() => this.props.deleteList(item)}
+          className="list__delete"
+          src={deleteIcon}
+          width="15px"
+          alt=""
+        />
+        <p className="list__count">{item.count}</p>
         
       </li>
     )

@@ -1,0 +1,59 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.list:hover {
+  font-weight: 500;
+}
+
+.list__icon {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+  width: 15px;
+}
+.list__edit {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+  width: 15px;
+  opacity: 10%;
+  cursor: pointer;
+}
+.list__text {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+}
+.list__delete {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+  width: 15px;
+  opacity: 10%;
+  cursor: pointer;
+}
+.list__count {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+  margin-left: auto;
+}
+
+.list__edit:hover,
+.list__delete:hover {
+  opacity: 90%;
+}
+
+.list__text > input {
+  width: 110px;
+  border: 1px solid lightgray;
+  padding: 5px;
+  border-radius: 6px;
+}
+.list__text > button {
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
