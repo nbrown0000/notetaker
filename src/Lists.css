@@ -31,11 +31,19 @@
   width: 100%;
 }
 
-.lists__active-name-icon,
-.lists__active-name-text,
 .lists__active-name-edit,
+.lists__active-name-text,
 .lists__active-name-delete {
-  /* margin: 0 10px; */
+  cursor: pointer;
+}
+
+.lists__active-name-edit {
+  margin: 3px;
+  opacity: 10%;
+}
+
+.lists__active-name-edit:hover {
+  opacity: 90%;
 }
 
 .lists__active-name-text > input {
@@ -50,7 +58,7 @@
   width: 50px;
   background: none;
   border: none;
-  cursor: pointer;
+  /* cursor: pointer; */
   /* border: 1px solid red; */
 }
 
@@ -60,7 +68,7 @@
 
 .lists__active-item:hover {
   color: #191919;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .lists__active-item > * {
@@ -78,13 +86,12 @@
   margin-right: 5px;
 }
 
-.lists__active-delete {
+.lists__active-name-delete {
   margin: 3px;
-  cursor: pointer;
   opacity: 10%;
 }
 
-.lists__active-delete:hover {
+.lists__active-name-delete:hover {
   opacity: 90%;
 }
 
