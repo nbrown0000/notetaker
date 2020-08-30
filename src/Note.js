@@ -31,6 +31,12 @@ class Note extends React.Component {
     this.props.saveNote(returnObject);
   }
 
+  onSaveInputKeypress = (e) => {
+    if(e.keyCode === 13) {
+      this.saveNote(this.props.note)
+    }
+  }
+
   onTextChange = (event) => {
     this.setState({ text: event.target.value })
   }
@@ -50,8 +56,11 @@ class Note extends React.Component {
         type="text"
         value={this.state.text}
         onChange={this.onTextChange}
+        onKeyUp={this.onSaveInputKeypress.bind(this)}
       />
-      <button onClick={() => this.saveNote(note)}>Save</button>
+      <button
+        onClick={() => this.saveNote(note)}
+      >Save</button>
     </>
 
     return (
