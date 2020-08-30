@@ -27,6 +27,12 @@ class Lists extends React.Component {
     this.setState({ itemToAdd: event.target.value })
   }
 
+  compareLists = (a,b) => {
+    if(a.list.list_id < b.list.list_id) { return -1; }
+    if(a.list.list_id > b.list.list_id) { return 1; }
+    return 0
+  }
+
   render() {
     
     const { lists } = this.props;
@@ -38,7 +44,7 @@ class Lists extends React.Component {
         <ul className="lists__active">
           {
           lists.length === 0 ? <></> :
-          lists.map((item,i) => {
+          lists.sort(this.compareLists).map((item,i) => {
               return (
                 <List
                   item={item}
