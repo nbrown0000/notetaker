@@ -45,6 +45,7 @@ class Lists extends React.Component {
                   key={i}
                   onListClicked={this.props.onListClicked}
                   deleteList={this.props.deleteList}
+                  saveList={this.props.saveList}
                 />
               )
             })

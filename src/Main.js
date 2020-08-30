@@ -109,6 +109,19 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }})
   }
 
+  saveList = (list) => {
+    const data = {
+      list_id: list.list_id,
+      title: list.title
+    }
+    const options = this.setOptions(data);
+    fetch("http://localhost:3100/updatelist/", options)
+    .then(response => { if(response.ok) {
+      this.getNotes();
+      this.getLists();
+    }})
+  }
+
   deleteList = (list) => {
     const data = { list_id: list.list.list_id }
     const options = this.setOptions(data);
@@ -135,6 +148,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
           onListClicked={this.onListClicked}
           onAddItemToList={this.onAddItemToList}
           deleteList={this.deleteList}
+          saveList={this.saveList}
         />
         
         <Notes
