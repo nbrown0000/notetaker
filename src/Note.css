@@ -1,0 +1,65 @@
+.note {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.note:hover {
+  font-weight: 500;
+}
+
+.note__icon {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+  width: 15px;
+}
+
+.note__edit {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+}
+
+.note__text {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+  font-size: 16px;  
+}
+
+.note__delete {
+  margin: 0 7px 0 0;
+  padding: 0 3px 0 0;
+}
+
+.note__edit,
+.note__delete {
+  cursor: pointer;
+  opacity: 10%;
+  width: 15px;
+}
+.note__edit:hover,
+.note__delete:hover {
+  opacity: 90%;
+}
+
+.note__text > input {
+  width: 120px;
+  border: 1px solid lightgray;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.note__text > button {
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+.note__text > button:hover {
+  font-weight: 500;
+}

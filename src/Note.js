@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Note.css";
 import noteIcon from "./icons/document-4.png";
 import deleteIcon from "./icons/garbage.png";
 import editIcon from "./icons/pencil.png";
@@ -64,28 +65,26 @@ class Note extends React.Component {
     </>
 
     return (
-      <li className="notes__item">
+      <li className="note">
         <img
-          className="notes__item-icon"
+          className="note__icon"
           src={noteIcon}
-          width="15px"
           alt=""
         />
         <img
-        style={buttonStyle}
+          style={buttonStyle}
           onClick={() => this.editNote(note)}
-          className="notes__item-edit"
+          className="note__edit"
           src={editIcon}
           alt=""
-          width="15px"
         />
-        <span className="notes__item-text">
+        <span className="note__text">
           {mode==='display' ? textDisplay : textEdit}
         </span>
         <img
         style={buttonStyle}
           onClick={() => this.props.deleteNote(note)}
-          className="notes__item-delete"
+          className="note__delete"
           src={deleteIcon}
           width="15px"
           alt=""
