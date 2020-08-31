@@ -9,7 +9,10 @@ class App extends React.Component {
     super();
     this.state = {
       route: 'main',
-      user: {user_id: '8'}
+      user: {
+        user_id: '8',
+        username: 'Johnny5'
+      }
       // route: 'login',
       // user: ''
     }
@@ -27,7 +30,7 @@ class App extends React.Component {
     this.setState({ route: route })
   }
 
-  render() {  
+  render() {
     
     return (
       <div className="App">
