@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Header.css"
-import userIcon from "./icons/user-3.png";
+import userIcon from "../icons/user-3.png";
 
 const Header = ({ user, onClickLogOut }) => {
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import "./Note.css";
-import noteIcon from "./icons/document-4.png";
-import deleteIcon from "./icons/garbage.png";
-import editIcon from "./icons/pencil.png";
+import noteIcon from "../icons/document-4.png";
+import deleteIcon from "../icons/garbage.png";
+import editIcon from "../icons/pencil.png";
 
 class Note extends React.Component {
   constructor(props) {

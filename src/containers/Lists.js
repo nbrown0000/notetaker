@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Lists.css";
-import List from "./List";
-import plusIcon from "./icons/icons8-plus-240.png";
+import List from "../components/List";
+import plusIcon from "../icons/icons8-plus-240.png";
 
 class Lists extends React.Component {
   constructor(props) {

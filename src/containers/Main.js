@@ -1,9 +1,9 @@
 import React from 'react';
 import "./Main.css";
-import Header from "./Header";
+import Header from "../components/Header";
 import Lists from "./Lists";
 import Notes from "./Notes";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 
 class Main extends React.Component {// = ({ collection, activeList, onCollectionClicked }) => {
   constructor(props) {

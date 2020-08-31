@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Notes.css";
-import Note from "./Note";
-import plusIcon from "./icons/icons8-plus-240.png";
+import Note from "../components/Note";
+import plusIcon from "../icons/icons8-plus-240.png";
 
 
 class Notes extends React.Component {

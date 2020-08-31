@@ -1,8 +1,8 @@
 import React from 'react'
 import "./List.css";
-import listIcon from "./icons/list.png";
-import deleteIcon from "./icons/garbage.png";
-import editIcon from "./icons/pencil.png";
+import listIcon from "../icons/list.png";
+import deleteIcon from "../icons/garbage.png";
+import editIcon from "../icons/pencil.png";
 
 class List extends React.Component {
   constructor(props) {
