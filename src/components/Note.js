@@ -51,9 +51,9 @@ class Note extends React.Component {
     if(mode==='edit') { buttonStyle = {'visibility': 'hidden'}}
 
     const textDisplay = <>{note.body}</>
-    const textEdit = <>
-      <input
-        className="notes__item-text-input"
+    const textEdit = <span className="note__edit-text">
+      <textarea
+        className="note__item-text-input"
         type="text"
         value={this.state.text}
         onChange={this.onTextChange}
@@ -62,7 +62,7 @@ class Note extends React.Component {
       <button
         onClick={() => this.saveNote(note)}
       >Save</button>
-    </>
+    </span>
 
     return (
       <li className="note">

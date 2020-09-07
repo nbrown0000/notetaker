@@ -23,6 +23,7 @@
 }
 
 .note__text {
+  width: 200px;
   margin: 0 7px 0 0;
   padding: 0 3px 0 0;
   font-size: 16px;  
@@ -44,14 +45,20 @@
   opacity: 90%;
 }
 
-.note__text > input {
-  width: 120px;
+.note__edit-text {
+  display: flex;
+  align-items: center;
+}
+
+.note__text > * > textarea {
+  /* width: 120px; */
   border: 1px solid lightgray;
   padding: 5px;
   border-radius: 6px;
+  outline: none;
 }
 
-.note__text > button {
+.note__text > * > button {
   margin: 0;
   padding: 0;
   width: 50px;
@@ -60,6 +67,6 @@
   cursor: pointer;
   /* border: 1px solid red; */
 }
-.note__text > button:hover {
+.note__text > * > button:hover {
   font-weight: 500;
 }
