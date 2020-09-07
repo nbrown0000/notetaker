@@ -45,20 +45,21 @@
   opacity: 90%;
 }
 
-.note__edit-text {
+.note__text-edit {
   display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
-.note__text > * > textarea {
-  /* width: 120px; */
+.note__text-edit > textarea {
+  width: 200px;
   border: 1px solid lightgray;
   padding: 5px;
   border-radius: 6px;
   outline: none;
 }
 
-.note__text > * > button {
+.note__text-edit > button {
   margin: 0;
   padding: 0;
   width: 50px;

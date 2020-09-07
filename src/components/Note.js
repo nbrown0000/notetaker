@@ -3,6 +3,7 @@ import "./Note.css";
 import noteIcon from "../icons/document-4.png";
 import deleteIcon from "../icons/garbage.png";
 import editIcon from "../icons/pencil.png";
+import TextareaAutosize from 'react-textarea-autosize';
 
 class Note extends React.Component {
   constructor(props) {
@@ -51,9 +52,9 @@ class Note extends React.Component {
     if(mode==='edit') { buttonStyle = {'visibility': 'hidden'}}
 
     const textDisplay = <>{note.body}</>
-    const textEdit = <span className="note__edit-text">
-      <textarea
-        className="note__item-text-input"
+    const textEdit = <span className="note__text-edit">
+      <TextareaAutosize
+        className="note__textarea"
         type="text"
         value={this.state.text}
         onChange={this.onTextChange}
