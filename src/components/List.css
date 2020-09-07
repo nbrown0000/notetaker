@@ -24,6 +24,7 @@
   cursor: pointer;
 }
 .list__text {
+  width: 170px;
   margin: 0 7px 0 0;
   padding: 0 3px 0 0;
   cursor: pointer;
