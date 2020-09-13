@@ -1,3 +1,23 @@
+
+* {
+  scrollbar-width: thin;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: none;
+}
+*::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: lightgray;
+  border-radius: 20px;
+}
+
+
+
 .notes {
   height: 90%;
   box-sizing: border-box;
@@ -58,6 +78,7 @@
   .notes {
     width: 50%;
     padding: 20px 20px 20px 0;
+    /* overflow-y: scroll; */
   }
   .notes > h3 {
     padding-left: 40px
@@ -66,7 +87,14 @@
     padding-left: 40px;
     border-left: 1px solid #D8D8D8;
     margin-left: -1px;
+    overflow-y: scroll;
   }
+  .notes__list:hover {
+    /* overflow-y: scroll; */
+  }
+
+
+
   .notes__add {
     margin: 0;
     padding: 0px 0px 0px 40px;
