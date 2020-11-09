@@ -61,32 +61,8 @@ class List extends React.Component {
         className="list"
         onClick={() => this.props.onListClicked(item)}
       >
-
-        <img
-          className="list__icon"
-          src={listIcon}
-          alt=""
-        />
-        <img
-          className="list__edit"
-          style={buttonStyle}
-          onClick={() => this.editListText()}
-          src={editIcon}
-          alt=""
-        />
-        <span className="list__text">
-          {mode==='display' ? textDisplay : textEdit}
-        </span>
-        <img
-          style={buttonStyle}
-          onClick={() => this.props.deleteList(item)}
-          className="list__delete"
-          src={deleteIcon}
-          width="15px"
-          alt=""
-        />
-        <p className="list__count">{item.count}</p>
-        
+        <span className="list__text">{item.list.title}</span>
+        <p className="list__count">{item.count}</p> 
       </li>
     )
   }

@@ -6,11 +6,12 @@ import Notes from "./Notes";
 import Footer from "../components/Footer";
 
 class Main extends React.Component {// = ({ collection, activeList, onCollectionClicked }) => {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       lists: [],
-      activeList: []
+      activeList: [],
+      view: 'lists'
     }
   }
 
@@ -67,6 +68,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   }
 
   onListClicked = (item) => {
+    this.setState({ view: 'notes'})
     this.setActiveList(item.list.list_id)
   }
 
@@ -131,34 +133,70 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       this.getLists();
     }})
   }
+
+  setView = (view) => {
+    this.setState({ view: view })
+  }
   
 
   render () {
+    const window = this.props.window;
+    const view = this.state.view;
+    // console.log(window)
 
     return (
       <main className="main">
-
-        <Header
-          user={this.props.user}
-          onClickLogOut={this.props.onClickLogOut}
-        />
-
-        <Lists
-          lists={this.state.lists}
-          onListClicked={this.onListClicked}
-          onAddItemToList={this.onAddItemToList}
-          deleteList={this.deleteList}
-          saveList={this.saveList}
-        />
+        {
+          window.width > 480 ?
+          <>
+            <Header
+              user={this.props.user}
+              onClickLogOut={this.props.onClickLogOut}
+            />
+            <Lists
+              lists={this.state.lists}
+              onListClicked={this.onListClicked}
+              onAddItemToList={this.onAddItemToList}
+              deleteList={this.deleteList}
+              saveList={this.saveList}
+            />
+            <Notes
+              activeList={this.state.activeList}
+              AddToNotes={this.AddToNotes}
+              deleteNote={this.deleteNote}
+              editNote={this.editNote}
+              saveNote={this.saveNote}
+              setView={this.setView}
+            />
+          </>
+          : view === 'lists' ?
+            <>
+              <Header
+                user={this.props.user}
+                onClickLogOut={this.props.onClickLogOut}
+                window={window}
+              />
+              <Lists
+                lists={this.state.lists}
+                onListClicked={this.onListClicked}
+                onAddItemToList={this.onAddItemToList}
+                deleteList={this.deleteList}
+                saveList={this.saveList}
+              />
+            </>
+          :
+            <>
+              <Notes
+                activeList={this.state.activeList}
+                AddToNotes={this.AddToNotes}
+                deleteNote={this.deleteNote}
+                editNote={this.editNote}
+                saveNote={this.saveNote}
+                setView={this.setView}
+              />
+            </>
+        }
         
-        <Notes
-          activeList={this.state.activeList}
-          AddToNotes={this.AddToNotes}
-          deleteNote={this.deleteNote}
-          editNote={this.editNote}
-          saveNote={this.saveNote}
-        />
-
         <Footer />
 
         {/* <div>Icons made by <a href="https://www.flaticon.com/authors/chanut" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}

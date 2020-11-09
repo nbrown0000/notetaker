@@ -4,8 +4,8 @@ import "./Login.css";
 
 
 class Login extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       username: '',
       password: ''
@@ -53,24 +53,26 @@ class Login extends React.Component {
   render() {
     return (
       <div className="login">
+        <h1 className="login__title">Note<span className="emphasise">Taker</span></h1>
         <p className="login__header"><b>Log in</b> to acess your notes</p>
-        <p className="login__username">
-          <label>Username:</label>
-          <input onChange={this.onUsernameChange} />
-        </p>
-        <p className="login__password">
-          <label>Password:</label>
-          <input type="password" onChange={this.onPasswordChange} />
-        </p>
-        <p className="login__submit">
-          <button className="login__submit-button" onClick={this.onLogin}>Login</button>
-        </p>
+        <div className="login__form">
+          <p className="login__username">
+            <label>Username: </label>
+            <input onChange={this.onUsernameChange} />
+          </p>
+          <p className="login__password">
+            <label>Password: </label>
+            <input type="password" onChange={this.onPasswordChange} />
+          </p>
+          <p className="login__submit">
+            <button className="login__submit-button" onClick={this.onLogin}>Login</button>
+          </p>
+        </div>
         <div className="login__register">
-          <p className="login__register-message">Don't have an account?</p>
           <button
             className="login__register-button"
             onClick={() => this.props.changeRoute('register')}
-          >Register Now</button>
+          >Don't have an account?</button>
         </div>
       </div>
     )

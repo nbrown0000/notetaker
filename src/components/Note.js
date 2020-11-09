@@ -6,8 +6,8 @@ import editIcon from "../icons/pencil.png";
 import TextareaAutosize from 'react-textarea-autosize';
 
 class Note extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       mode: 'display',
       text: ''
@@ -67,29 +67,29 @@ class Note extends React.Component {
 
     return (
       <li className="note">
-        <img
+        {/* <img
           className="note__icon"
           src={noteIcon}
           alt=""
-        />
-        <img
+        /> */}
+        {/* <img
           style={buttonStyle}
           onClick={() => this.editNote(note)}
           className="note__edit"
           src={editIcon}
           alt=""
-        />
+        /> */}
         <span className="note__text">
           {mode==='display' ? textDisplay : textEdit}
         </span>
-        <img
+        {/* <img
         style={buttonStyle}
           onClick={() => this.props.deleteNote(note)}
           className="note__delete"
           src={deleteIcon}
           width="15px"
           alt=""
-        />
+        /> */}
       </li>
     )
   }

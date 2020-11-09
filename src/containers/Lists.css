@@ -1,18 +1,11 @@
 .lists {
-  height: 90%;
+  height: 100%;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* font-size: 16px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
-
-.lists > h3 {
-  font-size: 21px;
-  margin: 0;
-  padding: 0 0 10px 0;
 }
 
 .lists__active {
@@ -21,42 +14,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  line-height: 1.4em;
-}
-
-
-
-.lists__add {
-  margin: 0;
-  padding: 0;
-}
-
-.lists__add-item {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-.lists__add-item > * {
-  margin: 0;
-  padding: 0;
-}
-
-.lists__add-item > img {
-  min-width: 15px;
-  max-width: 15px;
-}
-
-.lists__add-item > input {
-  flex-grow: 1;
-  /* font-size: 16px; */
-  opacity: 50%;
-}
-
-.lists__add-item > button {
-  /* font-size: 15px; */
-  opacity: 50%;
 }
 
 @media (min-width: 481px) {
@@ -77,19 +34,12 @@
 @media (max-width: 480px) {
   .lists {
     border-bottom: 1px solid #D8D8D8;
-    margin: 0 10px;
-    padding: 15px;
+    margin: 0;
+    padding: 0;
     flex: 1;
     overflow-y: scroll;
   }
-  .lists > h3 {
-    margin: 0;
-  }
   .lists__active {
     overflow-y: scroll;
-  }
-  .lists__add {
-    margin: 5px 0 0 0;
-    padding: 0;
   }
 }

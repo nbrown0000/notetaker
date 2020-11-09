@@ -2,9 +2,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
-  margin: 0;
-  padding: 3px 0 3px 0;
+  margin: 2px;
+  padding: 8px 5px;
+  background-color: hsl(53.4,	100%,	85.69%);
+  border-left: 3px solid  hsl(53.4,	100%,	50%);
+  box-shadow: 1px 1px #dedede;
+  cursor: pointer;
 }
 
 .list:hover {

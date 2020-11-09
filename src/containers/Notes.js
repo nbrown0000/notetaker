@@ -2,11 +2,14 @@ import React from 'react';
 import "./Notes.css";
 import Note from "../components/Note";
 import plusIcon from "../icons/icons8-plus-240.png";
+import backIcon from "../icons/back-button.png";
+import editIcon from "../icons/pencil.png";
+import dotsIcon from "../icons/show-more-button-with-three-dots.png";
 
 
 class Notes extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       itemToAdd: ''
     }
@@ -34,15 +37,37 @@ class Notes extends React.Component {
     return 0
   }
 
+  setView = (view) => {
+    this.props.setView(view);
+  }
+
   render() {
-    const title = this.props.activeList.title || ''
+    const title = this.props.activeList.title || "You don't have any lists"
     const notes = this.props.activeList.notes || []
     
     const inputStyle = { width: "70%" }
 
     return (
       <section className="notes">
-        <h3>{title}</h3>
+        <header className="notes__nav">
+          
+          <section className="notes__header-leftsection">
+            <button className="notes__back" onClick={() => this.setView('lists')}>
+              <img src={backIcon} alt="Back" />
+            </button>
+            <h1 className="notes__heading">{title}</h1>
+          </section>
+
+          <section className="notes__header-rightsection">
+            <button className="notes__edit">
+              <img src={editIcon} alt="Edit" />
+            </button>
+            <button className="notes__dotsmenu">
+              <img src={dotsIcon} alt="Dotsmenu"/>
+            </button>
+          </section>
+          
+        </header>
         <ul className="notes__list">
           {notes.sort(this.compareNotes).map((note,i) => {
             return (
@@ -56,7 +81,7 @@ class Notes extends React.Component {
             )
           })}
         </ul>
-        <ul className="notes__add">
+        {/* <ul className="notes__add">
           <li className="notes__add-item">
             <img src={plusIcon} alt="" />
             <input
@@ -71,7 +96,7 @@ class Notes extends React.Component {
               onClick={() => this.onInputButton()}
             >Add</button>
           </li>
-        </ul>
+        </ul> */}
       </section>
     )
   }

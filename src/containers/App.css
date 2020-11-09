@@ -7,7 +7,9 @@
   width: 100vw;
   box-sizing: border-box;
   color: #484848;
-  background-color: #f1f1f1;
+  background: #f7f7f7;
+  /* background-color: #7FDBFF; */
+  /* background: linear-gradient(to bottom, #7FDBFF, #0074D9); */
 }
 
 /* @media (max-width: 600px) {

@@ -7,15 +7,25 @@ import Register from "../components/Register";
 class App extends React.Component {
   constructor() {
     super();
+    // this.state = {
+    //   route: 'login',
+    //   user: ''
+    // }
     this.state = {
       route: 'main',
-      user: {
-        user_id: '8',
-        username: 'Johnny5'
-      }
-      // route: 'login',
-      // user: ''
+      window: { width: 0, height: 0 },
+      user: { user_id: 8, username: "Johnny5" }
     }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  updateWindowDimensions() {
+    this.setState({
+      window: {
+        width: window.innerWidth,
+        height: window.innerHeight
+      }
+    })
   }
 
   setUser = (user) => {
@@ -28,6 +38,15 @@ class App extends React.Component {
 
   changeRoute = (route) => {
     this.setState({ route: route })
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
   render() {
@@ -47,7 +66,11 @@ class App extends React.Component {
           ?
             <Register changeRoute={this.changeRoute} />
           :
-            <Main user={this.state.user} onClickLogOut={this.onClickLogOut} />
+              <Main
+                user={this.state.user}
+                window={this.state.window}
+                onClickLogOut={this.onClickLogOut}
+              />
         }
       </div>
     );

@@ -4,8 +4,8 @@ import List from "../components/List";
 import plusIcon from "../icons/icons8-plus-240.png";
 
 class Lists extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       itemToAdd: ''
     }
@@ -40,7 +40,6 @@ class Lists extends React.Component {
 
     return (
       <section className="lists">
-        <h3>Your List</h3>
         <ul className="lists__active">
           {
           lists.length === 0 ? <></> :
@@ -57,7 +56,7 @@ class Lists extends React.Component {
             })
           }
         </ul>
-        <ul className="lists__add">
+        {/* <ul className="lists__add">
           <li className="lists__add-item">
             <img src={plusIcon} alt="" />
             <input
@@ -72,7 +71,7 @@ class Lists extends React.Component {
               onClick={() => this.onInputButton()}
             >Add</button>
           </li>
-        </ul>
+        </ul> */}
       </section>
     )
   }
