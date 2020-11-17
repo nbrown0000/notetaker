@@ -1,60 +1,58 @@
 .login {
+  background: #ffdb9a;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 100vw;
   height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .login__title {
-  margin-bottom: 100px;
+  box-sizing: border-box;
 }
 
-.login__form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.login__title h1 {
+  color: #303030;
+  margin: 0;
 }
 
 .emphasise {
-  color: #fff;
+  color: #ffa500;
   font-style: italic;
   text-decoration: underline;
   text-decoration-style: dotted;
 }
 
-.login__header {
-  margin-bottom: 25px;
-  font-size: 1.2em;
-  color: #6F6F6F;
+.login__form {
+  background: #fefefe;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 50px 30px;
+  border-radius: 5px;
+  /* border: 1px solid #ffc04d; */
+  box-shadow: 1px 1px #ffa500;
 }
-
-.login__username {
-  margin: 5px;
-  color: #838383;
-}
-
-.login__username input,
-.login__password input {
-  padding: 5px;
-  border: 1px solid #f5fcff;
-  border-radius: 0;
-}
-
-.login__password {
-  margin: 5px;
-  color: #838383;
-}
-
-.login__submit {
-  margin-top: 15px;
+.login__form button {
   align-self: center;
+}
+.login__form input {
+  margin: 0 0 35px 0;
+  padding: 8px;
+  color: #838383;
+  border: 1px solid #bebebe;
+  border-radius: 5px;
+}
+.login__form input::selection {
+  background: #ffdb9a;
 }
 
 .login__submit-button {
-  background: #484848;
-  color: #FFF;
+  background: #ffa500;
+  color: #303030;
   border: none;
   padding: 10px 30px;
   border-radius: 20px;

@@ -53,27 +53,23 @@ class Login extends React.Component {
   render() {
     return (
       <div className="login">
-        <h1 className="login__title">Note<span className="emphasise">Taker</span></h1>
-        <p className="login__header"><b>Log in</b> to acess your notes</p>
-        <div className="login__form">
-          <p className="login__username">
-            <label>Username: </label>
-            <input onChange={this.onUsernameChange} />
-          </p>
-          <p className="login__password">
-            <label>Password: </label>
-            <input type="password" onChange={this.onPasswordChange} />
-          </p>
-          <p className="login__submit">
-            <button className="login__submit-button" onClick={this.onLogin}>Login</button>
-          </p>
+        <div className="login__title">
+          <h1>Note<span className="emphasise">Taker</span></h1>
         </div>
+
+        <div className="login__form">
+          <input onChange={this.onUsernameChange} placeholder="Username" />
+          <input type="password" onChange={this.onPasswordChange} placeholder="Password" />
+          <button className="login__submit-button" onClick={this.onLogin}>Login</button>
+        </div>
+
         <div className="login__register">
           <button
             className="login__register-button"
             onClick={() => this.props.changeRoute('register')}
           >Don't have an account?</button>
         </div>
+        
       </div>
     )
   }
