@@ -7,22 +7,5 @@
   width: 100vw;
   box-sizing: border-box;
   color: #484848;
-  background: #f7f7f7;
-  /* background-color: #7FDBFF; */
-  /* background: linear-gradient(to bottom, #7FDBFF, #0074D9); */
+  background: #fff6e7;
 }
-
-/* @media (max-width: 600px) {
-  .main {
-    flex-direction: column;
-    line-height: 1.3em;
-  }
-}
-
-@media (min-width: 600px) {
-  .main {
-    flex-direction: row;
-    flex: 1;
-    line-height: 1.3em;
-  }
-} */
