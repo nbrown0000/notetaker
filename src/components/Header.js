@@ -8,7 +8,7 @@ const Header = ({ window, onClickLogOut }) => {
 
   return (
     <header className="header">
-      <h1 className="header__title"><span className="header__note">Note</span>Taker</h1>
+      <h1 className="header__title">Note<span className="emphasise">Taker</span></h1>
       <nav className="header__nav">
         <img className="header__add" src={plusIcon} alt="add" />
         <img className="header__search" src={searchIcon} alt="add" />
