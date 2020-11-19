@@ -3,15 +3,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
-}
-
-.login__title {
-  box-sizing: border-box;
 }
 
 .login__title h1 {
@@ -27,14 +23,11 @@
 }
 
 .login__form {
-  background: #fefefe;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 50px 30px;
   border-radius: 5px;
-  /* border: 1px solid #ffc04d; */
-  box-shadow: 1px 1px #ffa500;
 }
 .login__form button {
   align-self: center;
