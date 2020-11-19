@@ -71,3 +71,9 @@
   background: none;
   cursor: pointer;
 }
+
+@media (min-width: 481px) {
+  .login {
+    width: 800px;
+  }
+}
