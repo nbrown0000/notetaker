@@ -35,11 +35,15 @@ class Lists extends React.Component {
 
   render() {
     
+    // background: 'none' };
+    // if(this.props.window.width > 480) { style = {background: '#bdbdbd'} }
+    
     const { lists } = this.props;
     const inputStyle = { width: "70%" }
+    const window = this.props.window;
 
     return (
-      <section className="lists">
+      <section className="lists" style={window.width > 480 ? {background: '#f8f8f8'} : {background: 'none'}}>
         <ul className="lists__active">
           {
           lists.length === 0 ? <></> :
