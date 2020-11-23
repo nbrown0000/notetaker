@@ -1,8 +1,6 @@
 .lists {
-  height: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -18,12 +16,15 @@
 
 @media (min-width: 481px) {
   .lists {
-    padding: 20px 0 20px 20px;
-    width: 50%;
+    /* header=45px,  footer=20px */
+    height: calc(100% - 45px - 20px);
+    /* border-right: 1px solid #bdbdbd; */
+    /* padding: 20px 0 20px 20px; */
+    width: 270px;
   }
   .lists__active {
-    padding-right: 40px;
-    border-right: 1px solid #D8D8D8;
+    /* padding-right: 40px; */
+    /* border-right: 1px solid #D8D8D8; */
   }
   .lists__add {
     margin: 0;
@@ -31,15 +32,17 @@
   }
 }
 
+@media (min-width: 481px) {
+  .lists {
+    padding: 10px;
+  }
+}
+
 @media (max-width: 480px) {
   .lists {
-    border-bottom: 1px solid #D8D8D8;
+    /* header=45px,  footer=20px */
+    height: calc(100% - 35px - 20px);
     margin: 0;
     padding: 0;
-    flex: 1;
-    overflow-y: scroll;
-  }
-  .lists__active {
-    overflow-y: scroll;
   }
 }
