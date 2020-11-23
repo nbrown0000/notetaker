@@ -152,6 +152,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
             <Header
               user={this.props.user}
               onClickLogOut={this.props.onClickLogOut}
+              window={this.props.window}
             />
             <Lists
               lists={this.state.lists}
@@ -159,6 +160,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
               onAddItemToList={this.onAddItemToList}
               deleteList={this.deleteList}
               saveList={this.saveList}
+              window={this.props.window}
             />
             <Notes
               activeList={this.state.activeList}
@@ -168,13 +170,14 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
               saveNote={this.saveNote}
               setView={this.setView}
             />
+            <Footer />
           </>
           : view === 'lists' ?
             <>
               <Header
                 user={this.props.user}
                 onClickLogOut={this.props.onClickLogOut}
-                window={window}
+                window={this.props.window}
               />
               <Lists
                 lists={this.state.lists}
@@ -182,7 +185,9 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
                 onAddItemToList={this.onAddItemToList}
                 deleteList={this.deleteList}
                 saveList={this.saveList}
+                window={this.props.window}
               />
+              <Footer />
             </>
           :
             <>
@@ -196,10 +201,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
               />
             </>
         }
-        
-        <Footer />
 
-        {/* <div>Icons made by <a href="https://www.flaticon.com/authors/chanut" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
       </main>
     )
   }
