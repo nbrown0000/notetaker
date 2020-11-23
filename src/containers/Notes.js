@@ -1,18 +1,32 @@
 import React from 'react';
 import "./Notes.css";
 import Note from "../components/Note";
-import plusIcon from "../icons/icons8-plus-240.png";
 import backIcon from "../icons/back-button.png";
 import editIcon from "../icons/pencil.png";
 import dotsIcon from "../icons/show-more-button-with-three-dots.png";
+import tickIcon from "../icons/057-check.png";
 
 
 class Notes extends React.Component {
   constructor() {
     super()
     this.state = {
-      itemToAdd: ''
+      itemToAdd: '',
+      mode: 'view',
+      color: "#FFF7B6"
     }
+  }
+
+  setNoteBg = (hex) => {
+    this.setState({ background: hex })
+  }
+
+  editNotes = () => {
+    this.setState({ mode: 'edit' })
+  }
+
+  updateNotes = () => {
+    this.setState({ mode: 'view' })
   }
 
   onInputKeypress = (e) => {
@@ -44,24 +58,39 @@ class Notes extends React.Component {
   render() {
     const title = this.props.activeList.title || "You don't have any lists"
     const notes = this.props.activeList.notes || []
-    
-    const inputStyle = { width: "70%" }
+    const notesHeaderStyle = { background: this.state.color }
 
     return (
-      <section className="notes">
-        <header className="notes__nav">
+      <section className="notes" >
+        <header className="notes__nav" style={notesHeaderStyle}>
           
           <section className="notes__header-leftsection">
-            <button className="notes__back" onClick={() => this.setView('lists')}>
-              <img src={backIcon} alt="Back" />
-            </button>
-            <h1 className="notes__heading">{title}</h1>
+            {this.state.mode === 'view' ?
+              <>
+              <button className="notes__back" onClick={() => this.setView('lists')}>
+                <img src={backIcon} alt="Back" />
+              </button>
+              <h1 className="notes__heading">{title}</h1>
+              </>
+            :
+              <>
+              <button className="notes__update" onClick={() => this.updateNotes()}>
+                <img src={tickIcon} alt="accept" />
+              </button>
+              <input className="notes__heading-edit" placeholder={title} />
+              </>
+            }
+            
           </section>
 
           <section className="notes__header-rightsection">
-            <button className="notes__edit">
+          {this.state.mode === 'view' ?
+            <button className="notes__edit" onClick={this.editNotes}>
               <img src={editIcon} alt="Edit" />
             </button>
+          :
+            <></>
+          }
             <button className="notes__dotsmenu">
               <img src={dotsIcon} alt="Dotsmenu"/>
             </button>
@@ -77,6 +106,7 @@ class Notes extends React.Component {
                 editNote={this.props.editNote}
                 deleteNote={this.props.deleteNote}
                 saveNote={this.props.saveNote}
+                color={this.state.color}
               />
             )
           })}
