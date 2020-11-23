@@ -45,6 +45,14 @@ class Note extends React.Component {
 
   render() {
 
+    const dotStyle = {
+      width: '15px',
+      height: '15px',
+      borderRadius: '50%',
+      marginRight: '10px',
+      background: this.props.color
+    }
+
     const { note } = this.props;
     const { mode } = this.state;
 
@@ -79,6 +87,7 @@ class Note extends React.Component {
           src={editIcon}
           alt=""
         /> */}
+        <div style={dotStyle}></div>
         <span className="note__text">
           {mode==='display' ? textDisplay : textEdit}
         </span>
