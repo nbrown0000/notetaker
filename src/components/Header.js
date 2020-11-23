@@ -8,15 +8,22 @@ const Header = ({ window, onClickLogOut }) => {
 
   return (
     <header className="header">
+      
       <h1 className="header__title">Note<span className="emphasise">Taker</span></h1>
+
       <nav className="header__nav">
-        <img className="header__add" src={plusIcon} alt="add" />
-        <img className="header__search" src={searchIcon} alt="add" />
-        <p className="header__logout" onClick={onClickLogOut}>
-          { window > 480 ? <>Log out</> :
+        <div className="header__add">
+          { window.width > 480 ? <p>Add Note</p> : <></>}
+          <img src={plusIcon} alt="add" />
+        </div>
+        <div className="header__search">
+          { window.width > 480 ? <p>Search Notes</p> : <></>}
+          <img src={searchIcon} alt="add" />
+        </div>
+        <div className="header__logout" onClick={onClickLogOut}>
+          { window.width > 480 ? <p>Log out</p> : <></>}
           <img src={logoutIcon} alt="log out" onClick={onClickLogOut} />
-          }  
-        </p>
+        </div>
       </nav>
       
     </header>
