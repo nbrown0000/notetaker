@@ -58,18 +58,20 @@ class Notes extends React.Component {
   render() {
     const title = this.props.activeList.title || "You don't have any lists"
     const notes = this.props.activeList.notes || []
-    const notesHeaderStyle = { background: this.state.color }
+    const notesStyle = { background: this.state.color }
 
     return (
-      <section className="notes" >
-        <header className="notes__nav" style={notesHeaderStyle}>
+      <section className="notes"  >
+        <header className="notes__nav" style={notesStyle}>
           
           <section className="notes__header-leftsection">
             {this.state.mode === 'view' ?
               <>
+              {this.props.window.width < 481 ?
               <button className="notes__back" onClick={() => this.setView('lists')}>
                 <img src={backIcon} alt="Back" />
               </button>
+              : <></> }
               <h1 className="notes__heading">{title}</h1>
               </>
             :
@@ -97,7 +99,7 @@ class Notes extends React.Component {
           </section>
           
         </header>
-        <ul className="notes__list">
+        <ul className="notes__list" >
           {notes.sort(this.compareNotes).map((note,i) => {
             return (
               <Note
