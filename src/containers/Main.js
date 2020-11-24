@@ -169,6 +169,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
               editNote={this.editNote}
               saveNote={this.saveNote}
               setView={this.setView}
+              window={this.props.window}
             />
             <Footer />
           </>
@@ -198,6 +199,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
                 editNote={this.editNote}
                 saveNote={this.saveNote}
                 setView={this.setView}
+                window={this.props.window}
               />
             </>
         }
