@@ -1,8 +1,5 @@
 import React from 'react'
 import "./List.css";
-import listIcon from "../icons/list.png";
-import deleteIcon from "../icons/garbage.png";
-import editIcon from "../icons/pencil.png";
 
 class List extends React.Component {
   constructor(props) {
@@ -36,15 +33,18 @@ class List extends React.Component {
   }
 
   render() {
+    const listStyle = {
+      borderBottom: '1px solid #e8e8e8',
+    }
     
     const { item } = this.props;
     const { mode } = this.state;
 
     let buttonStyle = {'visibility': 'visible'}
     if(mode==='edit') { buttonStyle = {'visibility': 'hidden'}}
-
     const textDisplay = <>{item.list.title}</>
     const textEdit = <>
+
       <input
         className="lists__item-text-input"
         type="text"
@@ -60,6 +60,7 @@ class List extends React.Component {
       <li
         className="list"
         onClick={() => this.props.onListClicked(item)}
+        style={listStyle}
       >
         <span className="list__text">{item.list.title}</span>
         <p className="list__count">{item.count}</p> 
