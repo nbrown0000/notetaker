@@ -1,8 +1,5 @@
 import React from 'react';
 import "./Note.css";
-import noteIcon from "../icons/document-4.png";
-import deleteIcon from "../icons/garbage.png";
-import editIcon from "../icons/pencil.png";
 import TextareaAutosize from 'react-textarea-autosize';
 
 class Note extends React.Component {
@@ -50,7 +47,8 @@ class Note extends React.Component {
       height: '15px',
       borderRadius: '50%',
       marginRight: '10px',
-      background: this.props.color
+      background: '#FFF7B6',
+      border: '1px solid #e8e8e8'
     }
 
     const { note } = this.props;
