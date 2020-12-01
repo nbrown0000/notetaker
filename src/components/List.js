@@ -3,7 +3,7 @@ import "./List.css";
 
 class List extends React.Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       mode: 'display',
       text: ''
@@ -38,23 +38,21 @@ class List extends React.Component {
     }
     
     const { item } = this.props;
-    const { mode } = this.state;
+    // const { mode } = this.state;
 
-    let buttonStyle = {'visibility': 'visible'}
-    if(mode==='edit') { buttonStyle = {'visibility': 'hidden'}}
-    const textDisplay = <>{item.list.title}</>
-    const textEdit = <>
-
-      <input
-        className="lists__item-text-input"
-        type="text"
-        value={this.state.text}
-        onChange={this.onTextChange}
-      />
-      <button
-        onClick={() => this.saveList(item)}
-      >Save</button>
-    </>
+    // const buttonStyle = mode==='edit' ? {'visibility': 'hidden'} : {'visibility': 'visible'}
+    // const textDisplay = <>{item.list.title}</>
+    // const textEdit = <>
+    //   <input
+    //     className="lists__item-text-input"
+    //     type="text"
+    //     value={this.state.text}
+    //     onChange={this.onTextChange}
+    //   />
+    //   <button
+    //     onClick={() => this.saveList(item)}
+    //   >Save</button>
+    // </>
 
     return (
       <li
