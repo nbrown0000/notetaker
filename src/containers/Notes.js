@@ -8,13 +8,30 @@ import tickIcon from "../icons/057-check.png";
 
 
 class Notes extends React.Component {
-  constructor() {
+  constructor(props) {
+    const { isNewList, title } = props.activeList
     super()
     this.state = {
       itemToAdd: '',
       mode: 'view',
-      color: "#FFF7B6"
+      color: "#FFF7B6",
+      title: isNewList ? '' : title
     }
+  }
+
+  componentDidMount() {
+    this.setState({ title: '' })
+  }
+
+  onTitleInputChange = (e) => {
+    this.setState({ title: e.target.value })
+  }
+
+  updateListTitle = () => {
+    this.props.saveList({
+      list_id: this.props.activeList.list_id,
+      title: this.state.title
+    })
   }
 
   setNoteBg = (hex) => {
@@ -22,11 +39,13 @@ class Notes extends React.Component {
   }
 
   editNotes = () => {
-    this.setState({ mode: 'edit' })
+    this.setState({ mode: 'edit', title: this.props.activeList.title })
   }
 
   updateNotes = () => {
-    this.setState({ mode: 'view' })
+    this.updateListTitle();
+    this.setState({ title: this.props.activeList.title })
+    this.setState({ mode: 'view' });
   }
 
   onInputKeypress = (e) => {
@@ -51,47 +70,52 @@ class Notes extends React.Component {
     return 0
   }
 
-  setView = (view) => {
-    this.props.setView(view);
+  backToLists = () => {
+    this.setState({ mode: 'view', title: this.props.activeList.title })
+    this.props.setView('lists')
   }
 
   render() {
-    const title = this.props.activeList.title || "You don't have any lists"
-    const notes = this.props.activeList.notes || []
-    const notesStyle = { background: this.state.color }
+    
+
+    const BACKBUTTON =
+      <button className="notes__back" onClick={() => this.backToLists()}>
+        <img src={backIcon} alt="Back" />
+      </button>;
+    
+    const propTitle = this.props.activeList.title;
+    const notes = this.props.activeList.notes || [];
+    const notesStyle = { background: this.state.color };
+    const mode = this.state.mode;
+    const isNewList = this.props.activeList.isNewList;
 
     return (
       <section className="notes"  >
         <header className="notes__nav" style={notesStyle}>
           
           <section className="notes__header-leftsection">
-            {this.state.mode === 'view' ?
-              <>
-              {this.props.window.width < 481 ?
-              <button className="notes__back" onClick={() => this.setView('lists')}>
-                <img src={backIcon} alt="Back" />
-              </button>
-              : <></> }
-              <h1 className="notes__heading">{title}</h1>
-              </>
+            {this.props.window.width < 481 && BACKBUTTON}
+
+            {isNewList || mode==='edit' ?
+              <input
+                className="notes__heading-edit"
+                value={this.state.title}
+                onChange={this.onTitleInputChange}
+              />
             :
-              <>
-              <button className="notes__update" onClick={() => this.updateNotes()}>
-                <img src={tickIcon} alt="accept" />
-              </button>
-              <input className="notes__heading-edit" placeholder={title} />
-              </>
-            }
-            
+            <h1 className="notes__heading">{propTitle}</h1>
+          }
           </section>
 
           <section className="notes__header-rightsection">
-          {this.state.mode === 'view' ?
+          {isNewList || mode==='edit' ?
+            <button className="notes__update" onClick={() => this.updateNotes()}>
+              <img src={tickIcon} alt="accept" />
+            </button>
+          :
             <button className="notes__edit" onClick={this.editNotes}>
               <img src={editIcon} alt="Edit" />
             </button>
-          :
-            <></>
           }
             <button className="notes__dotsmenu">
               <img src={dotsIcon} alt="Dotsmenu"/>
