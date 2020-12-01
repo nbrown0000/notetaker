@@ -47,20 +47,23 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
     }) 
   }
 
-  setActiveList = (list_id) => {
+  setActiveList = (list_id, isNewList, callback) => {
     const data = { list_id: list_id }
     const options = this.setOptions(data);
     fetch("http://localhost:3100/getnotes/", options)
       .then(response => response.json())
       .then(data => {
-        this.setState({ activeList: data })
+        const listData = {
+          ...data, isNewList: isNewList
+        }
+        this.setState({ activeList: listData }, callback)
     })
   }
 
-  onAddItemToList = (item) => {
+  addList = (title) => {
     const data = {
       user_id: this.props.user.user_id,
-      title: item
+      title: title
     }
     const options = this.setOptions(data);
     fetch("http://localhost:3100/addlist/", options)
@@ -83,10 +86,6 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       this.getNotes();
       this.getLists();
     }})
-  }
-  
-  editNote = (note) => {
-    // console.log("Editing ", note)
   }
 
   saveNote = (note) => {
@@ -137,12 +136,25 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   setView = (view) => {
     this.setState({ view: view })
   }
+
+  onClickAddList = () => {
+    this.addList("");
+
+    const data = { user_id: this.props.user.user_id }
+    const options = this.setOptions(data);
+    fetch("http://localhost:3100/mostrecentlist", options)
+    .then(response => response.json())
+    .then(activeList => {
+      this.getLists();
+      this.setActiveList(activeList.list_id, true);
+      this.setState({ view: 'notes'})
+    })
+  }
   
 
   render () {
     const window = this.props.window;
     const view = this.state.view;
-    // console.log(window)
 
     return (
       <main className="main">
@@ -153,17 +165,19 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
               user={this.props.user}
               onClickLogOut={this.props.onClickLogOut}
               window={this.props.window}
+              onClickAddList={this.onClickAddList}
             />
             <Lists
               lists={this.state.lists}
               onListClicked={this.onListClicked}
-              onAddItemToList={this.onAddItemToList}
+              addList={this.addList}
               deleteList={this.deleteList}
               saveList={this.saveList}
               window={this.props.window}
             />
             <Notes
               activeList={this.state.activeList}
+              saveList={this.saveList}
               AddToNotes={this.AddToNotes}
               deleteNote={this.deleteNote}
               editNote={this.editNote}
@@ -179,11 +193,12 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
                 user={this.props.user}
                 onClickLogOut={this.props.onClickLogOut}
                 window={this.props.window}
+                onClickAddList={this.onClickAddList}
               />
               <Lists
                 lists={this.state.lists}
                 onListClicked={this.onListClicked}
-                onAddItemToList={this.onAddItemToList}
+                addList={this.addList}
                 deleteList={this.deleteList}
                 saveList={this.saveList}
                 window={this.props.window}
@@ -194,6 +209,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
             <>
               <Notes
                 activeList={this.state.activeList}
+                saveList={this.saveList}
                 AddToNotes={this.AddToNotes}
                 deleteNote={this.deleteNote}
                 editNote={this.editNote}
