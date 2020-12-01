@@ -12,6 +12,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  overflow-y: scroll;
 }
 
 @media (min-width: 481px) {
@@ -19,7 +20,6 @@
     /* header=45px,  footer=20px */
     height: calc(100% - 45px - 20px);
     border-right: 1px solid #e3e3e3;
-    /* padding: 20px 0 20px 20px; */
     width: 270px;
   }
   .lists__active {
