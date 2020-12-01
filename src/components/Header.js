@@ -4,7 +4,7 @@ import logoutIcon from "../icons/logout.png";
 import plusIcon from "../icons/056-add.png";
 import searchIcon from "../icons/012-search.png";
 
-const Header = ({ window, onClickLogOut }) => {
+const Header = ({ window, onClickLogOut, onClickAddList }) => {
 
   return (
     <header className="header">
@@ -13,8 +13,8 @@ const Header = ({ window, onClickLogOut }) => {
 
       <nav className="header__nav">
         <div className="header__add">
-          { window.width > 480 ? <p>Add Note</p> : <></>}
-          <img src={plusIcon} alt="add" />
+          { window.width > 480 ? <p>Add List</p> : <></>}
+          <img src={plusIcon} alt="add" onClick={onClickAddList}/>
         </div>
         <div className="header__search">
           { window.width > 480 ? <p>Search Notes</p> : <></>}
