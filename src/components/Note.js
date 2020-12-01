@@ -54,8 +54,7 @@ class Note extends React.Component {
     const { note } = this.props;
     const { mode } = this.state;
 
-    let buttonStyle = {'visibility': 'visible'}
-    if(mode==='edit') { buttonStyle = {'visibility': 'hidden'}}
+    // const buttonStyle = mode==='edit' ? {'visibility': 'hidden'} : {'visibility': 'visible'}
 
     const textDisplay = <>{note.body}</>
     const textEdit = <span className="note__text-edit">
