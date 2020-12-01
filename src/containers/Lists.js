@@ -1,7 +1,8 @@
 import React from 'react'
 import "./Lists.css";
 import List from "../components/List";
-import plusIcon from "../icons/icons8-plus-240.png";
+// import AddList from "../components/AddList"
+// import plusIcon from "../icons/icons8-plus-240.png";
 
 class Lists extends React.Component {
   constructor() {
@@ -39,6 +40,7 @@ class Lists extends React.Component {
 
     return (
       <section className="lists" >
+        {/* <AddList /> */}
         <ul className="lists__active">
           {
           lists.length === 0 ? <></> :
@@ -57,22 +59,6 @@ class Lists extends React.Component {
             })
           }
         </ul>
-        {/* <ul className="lists__add">
-          <li className="lists__add-item">
-            <img src={plusIcon} alt="" />
-            <input
-              value={this.state.itemToAdd}
-              style={inputStyle}
-              onChange={this.handleItemChange}
-              placeholder="Add a List"
-              type="text"
-              onKeyUp={this.onInputKeypress.bind(this)}
-            />
-            <button
-              onClick={() => this.onInputButton()}
-            >Add</button>
-          </li>
-        </ul> */}
       </section>
     )
   }
