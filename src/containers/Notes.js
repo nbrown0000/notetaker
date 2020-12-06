@@ -98,6 +98,7 @@ class Notes extends React.Component {
 
             {isNewList || mode==='edit' ?
               <input
+                autoFocus
                 className="notes__heading-edit"
                 value={this.state.title}
                 onChange={this.onTitleInputChange}
