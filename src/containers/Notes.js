@@ -15,7 +15,8 @@ class Notes extends React.Component {
       itemToAdd: '',
       mode: 'view',
       color: "#FFF7B6",
-      title: isNewList ? '' : title
+      title: isNewList ? '' : title,
+      notesToUpdate: []
     }
   }
 
@@ -34,6 +35,14 @@ class Notes extends React.Component {
     })
   }
 
+  updateListNotes = () => {
+    const { notesToUpdate } = this.state;
+    for (const index in notesToUpdate) {
+      this.props.saveNote(notesToUpdate[index])
+    }
+    this.setState({ notesToUpdate: [] })
+  }
+
   setNoteBg = (hex) => {
     this.setState({ background: hex })
   }
@@ -42,8 +51,9 @@ class Notes extends React.Component {
     this.setState({ mode: 'edit', title: this.props.activeList.title })
   }
 
-  updateNotes = () => {
+  updateList = () => {
     this.updateListTitle();
+    this.updateListNotes();
     this.setState({ title: this.props.activeList.title })
     this.setState({ mode: 'view' });
   }
@@ -75,7 +85,26 @@ class Notes extends React.Component {
     this.props.setView('lists')
   }
 
+  addNoteToUpdate = (note) => {
+    const { notesToUpdate } = this.state;
+    
+    var found = false;
+    for (const index in notesToUpdate) {
+      if(notesToUpdate[index].note_id === note.note_id) { found = true; }
+    }
+    if(!found) {
+      // add note to update list
+      this.setState(prevState => ({
+        notesToUpdate: [
+          ...prevState.notesToUpdate,
+          note
+        ]
+      }))
+    }
+  }
+
   render() {
+    
     
 
     const BACKBUTTON =
@@ -110,7 +139,7 @@ class Notes extends React.Component {
 
           <section className="notes__header-rightsection">
           {isNewList || mode==='edit' ?
-            <button className="notes__update" onClick={() => this.updateNotes()}>
+            <button className="notes__update" onClick={() => this.updateList()}>
               <img src={tickIcon} alt="accept" />
             </button>
           :
@@ -134,6 +163,8 @@ class Notes extends React.Component {
                 deleteNote={this.props.deleteNote}
                 saveNote={this.props.saveNote}
                 color={this.state.color}
+                mode={this.state.mode}
+                addNoteToUpdate={this.addNoteToUpdate}
               />
             )
           })}
