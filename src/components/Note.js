@@ -15,26 +15,18 @@ class Note extends React.Component {
     this.setState({ text: this.props.note.body })
   }
 
-  editNote = (note) => {
-    this.setState({ mode: 'edit' });
-    this.setState({ text: this.props.note.body })
-    this.props.editNote(note);
+  handleFocusOut = () => {
+    this.props.addNoteToUpdate({
+      note_id: this.props.note.note_id,
+      body: this.state.text
+    })
   }
 
-  saveNote = (note) => {
-    this.setState({ mode: 'display' });
-    const returnObject = {
-      'note_id': note.note_id,
-      'body': this.state.text
-    }
-    this.props.saveNote(returnObject);
-  }
-
-  onSaveInputKeypress = (e) => {
-    if(e.keyCode === 13) {
-      this.saveNote(this.props.note)
-    }
-  }
+  // onSaveInputKeypress = (e) => {
+  //   if(e.keyCode === 13) {
+  //     this.saveNote(this.props.note)
+  //   }
+  // }
 
   onTextChange = (event) => {
     this.setState({ text: event.target.value })
@@ -52,9 +44,6 @@ class Note extends React.Component {
     }
 
     const { note } = this.props;
-    const { mode } = this.state;
-
-    // const buttonStyle = mode==='edit' ? {'visibility': 'hidden'} : {'visibility': 'visible'}
 
     const textDisplay = <>{note.body}</>
     const textEdit = <span className="note__text-edit">
@@ -63,39 +52,20 @@ class Note extends React.Component {
         type="text"
         value={this.state.text}
         onChange={this.onTextChange}
-        onKeyUp={this.onSaveInputKeypress.bind(this)}
+        // onKeyUp={this.onSaveInputKeypress.bind(this)}
+        onBlur={this.handleFocusOut}
       />
       <button
-        onClick={() => this.saveNote(note)}
-      >Save</button>
+        
+      >Delete</button>
     </span>
 
     return (
       <li className="note">
-        {/* <img
-          className="note__icon"
-          src={noteIcon}
-          alt=""
-        /> */}
-        {/* <img
-          style={buttonStyle}
-          onClick={() => this.editNote(note)}
-          className="note__edit"
-          src={editIcon}
-          alt=""
-        /> */}
         <div style={dotStyle}></div>
         <span className="note__text">
-          {mode==='display' ? textDisplay : textEdit}
+          {this.props.mode==='view' ? textDisplay : textEdit}
         </span>
-        {/* <img
-        style={buttonStyle}
-          onClick={() => this.props.deleteNote(note)}
-          className="note__delete"
-          src={deleteIcon}
-          width="15px"
-          alt=""
-        /> */}
       </li>
     )
   }
