@@ -40,7 +40,7 @@ class Register extends React.Component {
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     }
-    fetch("http://localhost:3100/register/", options)
+    fetch("http://localhost:3100/user/register/", options)
     .then(response => {
       if(response.ok) {
         return response.json();

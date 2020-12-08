@@ -26,7 +26,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   getNotes = (callback) => {
     const data = { list_id: this.state.activeList.list_id }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/getnotes/", options)
+    fetch("http://localhost:3100/note/getnotes/", options)
       .then(response => response.json())
       .then(data => this.setState({ activeList: data }, callback))
   }
@@ -34,7 +34,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   getLists = (callback) => {
     const data = { user_id: this.props.user.user_id }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/getlists/", options)
+    fetch("http://localhost:3100/list/getlists/", options)
       .then(response => response.json())
       .then(data => this.setState({ lists: data }, callback))
   }
@@ -50,7 +50,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   setActiveList = (list_id, isNewList, callback) => {
     const data = { list_id: list_id }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/getnotes/", options)
+    fetch("http://localhost:3100/note/getnotes/", options)
       .then(response => response.json())
       .then(data => {
         const listData = {
@@ -66,7 +66,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       title: title
     }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/addlist/", options)
+    fetch("http://localhost:3100/list/addlist/", options)
     .then(response => { if(response.ok) { this.getLists() }})
   }
 
@@ -81,7 +81,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       body: item
     }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/addnote/", options)
+    fetch("http://localhost:3100/note/addnote/", options)
     .then(response => { if(response.ok) {
       this.getNotes();
       this.getLists();
@@ -94,7 +94,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       body: note.body
     }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/updatenote/", options)
+    fetch("http://localhost:3100/note/updatenote/", options)
     .then(response => { if(response.ok) {
       this.getNotes();
     }})
@@ -103,7 +103,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   deleteNote = (note) => {
     const data = { note_id: note.note_id }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/deletenote/", options)
+    fetch("http://localhost:3100/note/deletenote/", options)
     .then(response => { if(response.ok) {
       this.getNotes();
       this.getLists();
@@ -116,7 +116,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
       title: list.title
     }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/updatelist/", options)
+    fetch("http://localhost:3100/list/updatelist/", options)
     .then(response => { if(response.ok) {
       this.getNotes();
       this.getLists();
@@ -126,7 +126,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
   deleteList = (list) => {
     const data = { list_id: list.list.list_id }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/deletelist/", options)
+    fetch("http://localhost:3100/list/deletelist/", options)
     .then(response => { if(response.ok) {
       this.setActiveList(this.state.lists[0].list.list_id)
       this.getLists();
@@ -142,7 +142,7 @@ class Main extends React.Component {// = ({ collection, activeList, onCollection
 
     const data = { user_id: this.props.user.user_id }
     const options = this.setOptions(data);
-    fetch("http://localhost:3100/mostrecentlist", options)
+    fetch("http://localhost:3100/list/mostrecentlist", options)
     .then(response => response.json())
     .then(activeList => {
       this.getLists();

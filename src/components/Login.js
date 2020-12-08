@@ -34,7 +34,7 @@ class Login extends React.Component {
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     }
-    fetch("http://localhost:3100/login/", options)
+    fetch("http://localhost:3100/user/login/", options)
     .then(response => {
       if(response.ok) {
         return response.json();
