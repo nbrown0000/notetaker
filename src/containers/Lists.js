@@ -36,7 +36,7 @@ class Lists extends React.Component {
   }
 
   render() {
-    const { lists } = this.props;
+    const { lists } = this.props || [];
 
     return (
       <section className="lists" >
