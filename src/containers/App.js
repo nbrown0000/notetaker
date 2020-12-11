@@ -7,15 +7,15 @@ import Register from "../components/Register";
 class App extends React.Component {
   constructor() {
     super();
-    // this.state = {
-    //   route: 'login',
-    //   user: ''
-    // }
     this.state = {
-      route: 'main',
-      window: { width: 0, height: 0 },
-      user: { user_id: 8, username: "Johnny5" }
+      route: 'login',
+      user: ''
     }
+    // this.state = {
+    //   route: 'main',
+    //   window: { width: 0, height: 0 },
+    //   user: { user_id: 8, username: "Johnny5" }
+    // }
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
