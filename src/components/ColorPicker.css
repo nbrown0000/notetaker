@@ -1,0 +1,7 @@
+.colorPicker {
+  /* height: 17px; */
+  /* width: 17px; */
+}
+.colorPicker input[type="color"] {
+  opacity: 0;
+}

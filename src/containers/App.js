@@ -1,43 +1,47 @@
 import React from 'react';
+import store from "../store";
 import './App.css';
 import Main from "./Main";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import { setUser, setRoute, setWindow } from "../actions";
+import { connect } from "react-redux";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      route: 'login',
-      user: ''
-    }
-    // this.state = {
-    //   route: 'main',
-    //   window: { width: 0, height: 0 },
-    //   user: { user_id: 8, username: "Johnny5" }
-    // }
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    window: state.window,
+    route: state.route
+  };
+}
+
+class ConnectedApp extends React.Component {
+  constructor(props) {
+    super(props);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   updateWindowDimensions() {
-    this.setState({
-      window: {
-        width: window.innerWidth,
-        height: window.innerHeight
-      }
-    })
+    store.dispatch(setWindow({
+      width: window.innerWidth,
+      height: window.innerHeight
+    }))
+    // this.setState({
+    //   window: {
+    //     width: window.innerWidth,
+    //     height: window.innerHeight
+    //   }
+    // })
   }
 
   setUser = (user) => {
-    this.setState({ user: user })
-  }
-
-  onClickLogOut = () => {
-    this.setState({ user: '', route: 'login' })
+    store.dispatch(setUser(user));
+    // this.setState({ user: user })
   }
 
   changeRoute = (route) => {
-    this.setState({ route: route })
+    store.dispatch(setRoute(route))
+    // this.setState({ route: route })
   }
 
   componentDidMount() {
@@ -51,30 +55,33 @@ class App extends React.Component {
 
   render() {
     
+    
     return (
       <div className="App">
         {
-        this.state.route === 'login'
+        this.props.route === 'login'
         ?
           <Login
             setUser={this.setUser}
-            onLogin={this.onLogin}
             changeRoute={this.changeRoute}
           />
         :
-          this.state.route === 'register'
+          this.props.route === 'register'
           ?
             <Register changeRoute={this.changeRoute} />
           :
               <Main
-                user={this.state.user}
-                window={this.state.window}
+                // user={this.props.user}
+                // window={this.props.window}
                 onClickLogOut={this.onClickLogOut}
+                // lists={store.getState().lists}
               />
         }
       </div>
     );
   }
 }
+
+const App = connect(mapStateToProps)(ConnectedApp);
 
 export default App;

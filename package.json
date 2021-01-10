@@ -9,7 +9,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "^3.4.4",
-    "react-textarea-autosize": "^8.2.0"
+    "react-textarea-autosize": "^8.2.0",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,5 +32,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-redux": "^7.2.2",
+    "redux-thunk": "^2.3.0"
   }
 }

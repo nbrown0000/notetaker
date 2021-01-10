@@ -1,7 +1,16 @@
 import React from 'react'
 import "./List.css";
+import { connect } from "react-redux";
+import { getNotes, setView, setNotesTitle, setNotesListId } from "../actions"
 
-class List extends React.Component {
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    lists: state.lists
+  };
+}
+
+class ConnectedList extends React.Component {
   constructor(props) {
     super();
     this.state = {
@@ -11,7 +20,7 @@ class List extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ text: this.props.item.list.title })
+    this.setState({ text: this.props.item.title })
   }
 
   editListText = () => {
@@ -22,49 +31,37 @@ class List extends React.Component {
     this.setState({ text: event.target.value })
   }
 
-  saveList = (list) => {
-    // console.log(list)
-    this.setState({ mode: 'display' });
-    const returnObject = {
-      'list_id': list.list.list_id,
-      'title': this.state.text
-    }
-    this.props.saveList(returnObject);
+  onListClicked = (item) => {
+    this.props.getNotes(item.list_id);
+    // this.props.setNotesTitle(item.list_id);
+    // this.props.setNotesListId(item.list_id);
+    this.props.setView('notes')
   }
 
   render() {
     const listStyle = {
       borderBottom: '1px solid #e8e8e8',
+      height: '30px'
     }
     
     const { item } = this.props;
-    // const { mode } = this.state;
-
-    // const buttonStyle = mode==='edit' ? {'visibility': 'hidden'} : {'visibility': 'visible'}
-    // const textDisplay = <>{item.list.title}</>
-    // const textEdit = <>
-    //   <input
-    //     className="lists__item-text-input"
-    //     type="text"
-    //     value={this.state.text}
-    //     onChange={this.onTextChange}
-    //   />
-    //   <button
-    //     onClick={() => this.saveList(item)}
-    //   >Save</button>
-    // </>
 
     return (
       <li
         className="list"
-        onClick={() => this.props.onListClicked(item)}
+        onClick={() => this.onListClicked(item)}
         style={listStyle}
       >
-        <span className="list__text">{item.list.title}</span>
+        <span className="list__text">{item.title}</span>
         <p className="list__count">{item.count}</p> 
       </li>
     )
   }
 }
+
+const List = connect(
+  mapStateToProps,
+  {getNotes, setView, setNotesTitle, setNotesListId}
+)(ConnectedList);
 
 export default List;
