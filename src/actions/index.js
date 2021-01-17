@@ -31,20 +31,32 @@ const getNotes = list_id => {
     return fetch("http://localhost:3100/note/getnotes/", setOptions({ list_id: list_id }))
       .then(response => response.json())
       .then(data => {
-        dispatch({ type: "SET_NOTES", payload: data })
-        dispatch({ type: "SET_NOTES_TITLE", payload: list_id })
-        dispatch({ type: "SET_NOTES_LIST_ID", payload: list_id })
+        dispatch({ type: "SET_NOTES", payload: data });
+        dispatch({ type: "SET_NOTES_TITLE", payload: list_id });
+        dispatch({ type: "SET_NOTES_LIST_ID", payload: list_id });
       })
   }
 }
 
-// updates list title and refreshes lists and notes
+// send updated title to API and dispatch updated list to reducer
 const updateList = (list_id, title) => {
   return function(dispatch) {
-    fetch("http://localhost:3100/list/updatelist/", setOptions({list_id: list_id, title: title }))
+    fetch("http://localhost:3100/list/updatelist/", setOptions({list_id, title }))
       .then(response => response.json())
       .then(data => {
         dispatch({ type: "UPDATE_LIST", payload: data });
+      })
+  }
+}
+
+
+// send updated notes to API and dispatch updated notes array to reducer
+const updateNotes = (list_id, notes) => {
+  return function(dispatch) {
+    fetch("http://localhost:3100/note/updatenotes/", setOptions({list_id, notes}))
+      .then(response => response.json())
+      .then(data => {
+        dispatch({ type: "SET_NOTES", payload: data})
       })
   }
 }
@@ -61,5 +73,6 @@ module.exports = {
   getNotes,
   setNotesTitle,
   setNotesListId,
-  updateList
+  updateList,
+  updateNotes
 }

@@ -16,7 +16,7 @@ class Note extends React.Component {
   }
 
   handleFocusOut = () => {
-    this.props.addNoteToUpdate({
+    this.props.addNoteToUpdateList({
       note_id: this.props.note.note_id,
       body: this.state.text
     })

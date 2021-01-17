@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./Notes.css";
 import Note from "../components/Note";
 import { connect } from "react-redux";
-import { setView, updateList, getLists, getNotes } from "../actions"
+import { setView, updateList, getLists, getNotes, updateNotes } from "../actions"
 
 import backIcon from "../icons/back-button.png";
 import editIcon from "../icons/pencil.png";
@@ -24,27 +24,21 @@ function ConnectedNotes(props) {
   const [mode, setMode] = useState('view');
   const [color, setColor] = useState('#FFF7B6');
   const [title, setTitle] = useState('');
+  const [notesToUpdate, setNotesToUpdate] = useState([]);
   React.useEffect(() => {
     setTitle(props.notesTitle);
   }, [props.notesTitle])
 
+  const addNoteToUpdateList = note => {
+    setNotesToUpdate([...notesToUpdate, note])
+  }
 
-  const updateNotes = () => {
-    // Update Title (call api to change list title)
-    // console.log(title)
-    props.updateList(props.notesListId, title);
+  const updateNotes = async () => {
+    await props.updateList(props.notesListId, title);
+    await props.updateNotes(props.notesListId, notesToUpdate);
     props.getLists(props.user.user_id);
     props.getNotes(props.notesListId);
-    // this.setState({title: this.props.notesTitle})
-
-
-    // this.updateListTitle();
-    // // this.updateListNotes();
-    // this.setState({ title: store.getState().activeList.title })
-
-    // replace with hooks
     setMode('view')
-    // this.setState({ mode: 'view' });
   }
 
   const compareNotes = (a,b) => {
@@ -109,7 +103,7 @@ function ConnectedNotes(props) {
               saveNote={props.saveNote}
               color={color}
               mode={mode}
-              // addNoteToUpdate={addNoteToUpdate}
+              addNoteToUpdateList={addNoteToUpdateList}
             />
           )
         })}
@@ -121,7 +115,7 @@ function ConnectedNotes(props) {
 
 const Notes = connect(
   mapStateToProps,
-  {setView, updateList, getLists, getNotes}
+  {setView, updateList, getLists, getNotes, updateNotes}
 )(ConnectedNotes);
 
 export default Notes;
