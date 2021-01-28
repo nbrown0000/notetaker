@@ -1,0 +1,32 @@
+.addnote {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.addnote > div {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addnote > input {
+  max-width: 300px;
+  border: 1px solid lightgray;
+  padding: 5px;
+  border-radius: 6px;
+  outline: none;
+  /* border: 1px solid red; */
+}
+
+.addnote p {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;  
+}
