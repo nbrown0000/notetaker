@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import "./Notes.css";
 import Note from "../components/Note";
+import AddNote from "../components/AddNote";
 import { connect } from "react-redux";
 import { setView, updateList, getLists, getNotes, updateNotes } from "../actions"
-
 import backIcon from "../icons/back-button.png";
 import editIcon from "../icons/pencil.png";
 import dotsIcon from "../icons/show-more-button-with-three-dots.png";
@@ -19,18 +19,24 @@ const mapStateToProps = state => {
   };
 }
 
+const mapDispatchToProps = {
+  setView, updateList, getLists, getNotes, updateNotes
+}
+
 function ConnectedNotes(props) {
 
   const [mode, setMode] = useState('view');
-  const [color, setColor] = useState('#FFF7B6');
+  const [color, setColor] = useState('');
   const [title, setTitle] = useState('');
   const [notesToUpdate, setNotesToUpdate] = useState([]);
+
   React.useEffect(() => {
     setTitle(props.notesTitle);
+    setColor('#FFF7B6');
   }, [props.notesTitle])
 
   const addNoteToUpdateList = note => {
-    setNotesToUpdate([...notesToUpdate, note])
+    setNotesToUpdate([...notesToUpdate, note]);
   }
 
   const updateNotes = async () => {
@@ -47,7 +53,6 @@ function ConnectedNotes(props) {
     return 0
   }
 
-
   const BACKBUTTON =
     <button className="notes__back" onClick={() => props.setView('lists')}>
       <img src={backIcon} alt="Back" />
@@ -62,7 +67,6 @@ function ConnectedNotes(props) {
         
         <section className="notes__header-leftsection">
           {props.window.width < 481 && BACKBUTTON}
-          {/* {isNewList===true || mode==='edit' ? */}
           {isNewList===true || mode==='edit' ?
             <input
               autoFocus
@@ -92,15 +96,18 @@ function ConnectedNotes(props) {
         </section>
         
       </header>
+      {mode==='edit' ?
+        <AddNote addNoteToUpdateList={addNoteToUpdateList} />
+      :
+        <></>
+      }
       <ul className="notes__list" >
         {props.notes.sort(compareNotes).map((note,i) => {
+          
           return (
             <Note
               note={note}
               key={i}
-              editNote={props.editNote}
-              deleteNote={props.deleteNote}
-              saveNote={props.saveNote}
               color={color}
               mode={mode}
               addNoteToUpdateList={addNoteToUpdateList}
@@ -111,145 +118,10 @@ function ConnectedNotes(props) {
     </section>
   )
 }
-// }
 
 const Notes = connect(
   mapStateToProps,
-  {setView, updateList, getLists, getNotes, updateNotes}
+  mapDispatchToProps
 )(ConnectedNotes);
 
 export default Notes;
-
-  // setOptions = (data) => {
-  //   return {
-  //     method: "POST",
-  //     body: JSON.stringify(data),
-  //     headers: { "Content-Type": "application/json" }
-  //   }
-  // }
-
-  // saveNote = (note) => {
-  //   const data = {
-  //     note_id: note.note_id,
-  //     body: note.body
-  //   };
-  //   const options = this.setOptions(data);
-  //   fetch("http://localhost:3100/note/updatenote/", options)
-  //   .then(response => { if(response.ok) {
-  //     this.getNotes();
-  //   }})
-  // }
-
-  // AddToNotes = (item) => {
-  //   const data = {
-  //     list_id: this.state.activeList.list_id,
-  //     body: item
-  //   }
-  //   const options = this.setOptions(data);
-  //   fetch("http://localhost:3100/note/addnote/", options)
-  //   .then(response => { if(response.ok) {
-  //     this.getNotes();
-  //     this.getLists();
-  //   }})
-  // }
-
-  // deleteNote = (note) => {
-  //   const data = { note_id: note.note_id }
-  //   const options = this.setOptions(data);
-  //   fetch("http://localhost:3100/note/deletenote/", options)
-  //   .then(response => { if(response.ok) {
-  //     this.getNotes();
-  //     this.getLists();
-  //   }})
-  // }
-
-  // saveList = (list) => {
-  //   // console.log(list)
-  //   const data = {
-  //     list_id: list.list_id,
-  //     title: list.title
-  //   }
-  //   const options = this.setOptions(data);
-  //   fetch("http://localhost:3100/list/updatelist/", options)
-  //   .then(response => { if(response.ok) {
-  //     // this.getLists();
-  //     this.getNotes();
-  //   }})
-  // }
-
-  // updateListTitle = () => {
-  //   const activeList = store.getState().activeList;
-  //   this.saveList({
-  //     list_id: activeList.list.list_id,
-  //     title: this.state.title
-  //   })
-  // }
-
-  // updateListNotes = () => {
-  //   const { notesToUpdate } = this.state;
-  //   // console.log("...Updating Notes: ")
-  //   for (const index in notesToUpdate) {
-  //     // console.log(notesToUpdate[index])
-  //     this.props.saveNote(notesToUpdate[index])
-  //   }
-  //   this.setState({ notesToUpdate: [] })
-  // }
-
-  // updateList = () => {
-  //   this.updateListTitle();
-  //   // this.updateListNotes();
-  //   this.setState({ title: store.getState().activeList.title })
-  //   this.setState({ mode: 'view' });
-  // }
-
-  // onTitleInputChange = (e) => {
-  //   this.setState({ title: e.target.value })
-  // }
-
-  // onInputKeypress = (e) => {
-  //   if(e.keyCode === 13) {
-  //     this.props.AddToNotes(this.state.itemToAdd)
-  //     this.setState({ itemToAdd: '' })
-  //   }
-  // }
-
-  // onInputButton = () => {
-  //   this.props.AddToNotes(this.state.itemToAdd)
-  //   this.setState({ itemToAdd: '' })
-  // }
-
-  // handleItemChange = event => {
-  //   this.setState({ itemToAdd: event.target.value })
-  // }
-
-  // compareNotes = (a,b) => {
-  //   if(a.note_id < b.note_id) { return -1; }
-  //   if(a.note_id > b.note_id) { return 1; }
-  //   return 0
-  // }
-
-  // editNotes = () => {
-  //   this.setState({ mode: 'edit', title: store.getState().activeList.list.title })
-  // }
-
-  // backToLists = () => {
-  //   this.props.setView('lists')
-  // }
-
-  // addNoteToUpdate = (note) => {
-  //   const { notesToUpdate } = this.state;
-    
-  //   var found = false;
-  //   for (const index in notesToUpdate) {
-  //     if(notesToUpdate[index].note_id === note.note_id) { found = true; }
-  //   }
-  //   if(!found) {
-  //     // add note to update list
-  //     this.setState(prevState => ({
-  //       notesToUpdate: [
-  //         ...prevState.notesToUpdate,
-  //         note
-  //       ]
-  //     }))
-  //   }
-  // }
