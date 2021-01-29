@@ -29,14 +29,17 @@ function ConnectedNotes(props) {
   const [color, setColor] = useState('');
   const [title, setTitle] = useState('');
   const [notesToUpdate, setNotesToUpdate] = useState([]);
+  const [notes, setNotes] = useState([]);
 
   React.useEffect(() => {
     setTitle(props.notesTitle);
     setColor('#FFF7B6');
-  }, [props.notesTitle])
+    setNotes(props.notes);
+  }, [props.notesTitle, props.notes])
 
   const addNoteToUpdateList = note => {
     setNotesToUpdate([...notesToUpdate, note]);
+    setNotes(props.notes)
   }
 
   const updateNotes = async () => {
@@ -102,7 +105,7 @@ function ConnectedNotes(props) {
         <></>
       }
       <ul className="notes__list" >
-        {props.notes.sort(compareNotes).map((note,i) => {
+        {notes.sort(compareNotes).map((note,i) => {
           
           return (
             <Note
