@@ -72,6 +72,17 @@ const addNote = (list_id, body) => {
   }
 }
 
+
+const deleteNote = (note_id, list_id) => {
+  return function(dispatch) {
+    fetch("http://localhost:3100/note/deletenote/", setOptions({note_id, list_id}))
+      .then(response => response.json())
+      .then(data => {
+        dispatch({ type: "SET_NOTES", payload: data})
+      })
+  }
+}
+
 module.exports = {
   setUser,
   setRoute,
@@ -86,5 +97,6 @@ module.exports = {
   setNotesListId,
   updateList,
   updateNotes,
-  addNote
+  addNote,
+  deleteNote
 }

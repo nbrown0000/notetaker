@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./Note.css";
 import TextareaAutosize from 'react-textarea-autosize';
 import { connect } from "react-redux";
+import {deleteNote} from "../actions/index";
 
 const mapStateToProps = state => {
   return {
@@ -26,6 +27,10 @@ const ConnectedNote = props => {
       note_id: props.note.note_id,
       body: text
     })
+  }
+
+  const onClickDelete = () => {
+    props.deleteNote(props.note.note_id, props.notesListId);
   }
 
   // onSaveInputKeypress = (e) => {
@@ -56,7 +61,7 @@ const ConnectedNote = props => {
       onBlur={handleFocusOut}
     />
     <button
-      
+      onClick={onClickDelete}
     >Delete</button>
   </span>
 
@@ -72,7 +77,8 @@ const ConnectedNote = props => {
 }
 
 const Note = connect(
-  mapStateToProps
+  mapStateToProps,
+  {deleteNote}
 )(ConnectedNote);
 
 export default Note;
