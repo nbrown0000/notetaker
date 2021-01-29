@@ -30,10 +30,8 @@ const ConnectedAddNote = (props) => {
     border: '1px solid #e8e8e8'
   }
 
-  const onClickOk = async () => {
-    console.log("Adding " + input);
-    await props.addNote(props.notesListId, input);
-    await props.getNotes(props.notesListId);
+  const onClickOk = () => {
+    props.addNote(props.notesListId, input);
     setMode('view');
     setInput('');
   }
