@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import "./Lists.css";
 import List from "../components/List";
 import { connect } from "react-redux";
@@ -11,25 +11,23 @@ const mapStateToProps = state => {
   };
 }
 
-class ConnectedLists extends Component {
+function ConnectedLists(props) {
+  useEffect(() => {
+    props.getLists(props.user.user_id)
+  }, [props])
 
-  componentDidMount() {
-    this.props.getLists(this.props.user.user_id);
-  }
-
-  compareLists = (a,b) => {
+  const compareLists = (a,b) => {
     if(a.list_id < b.list_id) { return -1; }
     if(a.list_id > b.list_id) { return 1; }
     return 0
   }
 
-  render() {
     return (
     <section className="lists" >
          <ul className="lists__active">
            {
-           this.props.lists.length === 0 ? <></> :
-           this.props.lists.sort(this.compareLists).map((item,i) => {
+           props.lists.length === 0 ? <></> :
+           props.lists.sort(compareLists).map((item,i) => {
                return (
                  <List
                    item={item}
@@ -41,7 +39,6 @@ class ConnectedLists extends Component {
          </ul>
        </section>
     )
-  }
     
 }
 
