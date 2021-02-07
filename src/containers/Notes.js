@@ -93,9 +93,9 @@ function ConnectedNotes(props) {
             <img src={editIcon} alt="Edit" />
           </button>
         }
-          <button className="notes__dotsmenu">
+          <div className="notes__dotsmenu">
             <DropdownMenu />
-          </button>
+          </div>
         </section>
         
       </header>
