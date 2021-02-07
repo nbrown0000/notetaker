@@ -13,9 +13,8 @@ const mapStateToProps = state => {
 
 class ConnectedLists extends Component {
 
-  async componentDidMount() {
-    await this.props.getLists(this.props.user.user_id);
-    this.props.getNotes(this.props.lists[0].list_id)
+  componentDidMount() {
+    this.props.getLists(this.props.user.user_id);
   }
 
   compareLists = (a,b) => {
