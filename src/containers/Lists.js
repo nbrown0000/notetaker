@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import "./Lists.css";
 import List from "../components/List";
 import { connect } from "react-redux";
-import { getLists } from "../actions"
+import { getLists, getNotes } from "../actions"
 
 const mapStateToProps = state => {
   return {
@@ -13,8 +13,9 @@ const mapStateToProps = state => {
 
 class ConnectedLists extends Component {
 
-  componentDidMount() {
-    this.props.getLists(this.props.user.user_id);
+  async componentDidMount() {
+    await this.props.getLists(this.props.user.user_id);
+    this.props.getNotes(this.props.lists[0].list_id)
   }
 
   compareLists = (a,b) => {
@@ -45,6 +46,6 @@ class ConnectedLists extends Component {
     
 }
 
-const Lists = connect(mapStateToProps, {getLists})(ConnectedLists);
+const Lists = connect(mapStateToProps, {getLists, getNotes})(ConnectedLists);
 
 export default Lists;
