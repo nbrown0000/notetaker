@@ -1,0 +1,47 @@
+.menu-container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.menu {
+  background: #f7f7f7;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  position: absolute;
+  right: 0px;
+  top: 25px;
+  width: 100px;
+  visibility: hidden;
+}
+
+.menu li {
+  list-style: none;
+  padding: 5px;
+}
+
+.menu li button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+}
+
+.menu li button:hover {
+  color: red;
+}
+
+.menu.active {
+  visibility: visible;
+}
+
+.menu-trigger {
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}

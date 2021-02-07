@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { setView, updateList, getLists, getNotes, updateNotes } from "../actions"
 import backIcon from "../icons/back-button.png";
 import editIcon from "../icons/pencil.png";
-import dotsIcon from "../icons/show-more-button-with-three-dots.png";
+import DropdownMenu from "../components/DropdownMenu";
 import tickIcon from "../icons/057-check.png";
 
 const mapStateToProps = state => {
@@ -94,7 +94,7 @@ function ConnectedNotes(props) {
           </button>
         }
           <button className="notes__dotsmenu">
-            <img src={dotsIcon} alt="Dotsmenu"/>
+            <DropdownMenu />
           </button>
         </section>
         
