@@ -16,6 +16,12 @@ function ConnectedLists(props) {
     props.getLists(props.user.user_id)
   }, [])
 
+  useEffect(() => {
+    if(props.lists.length > 0) {
+      props.getNotes(props.lists[0].list_id)
+    }
+  }, [props.lists])
+
   const compareLists = (a,b) => {
     if(a.list_id < b.list_id) { return -1; }
     if(a.list_id > b.list_id) { return 1; }
