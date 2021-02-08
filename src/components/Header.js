@@ -27,10 +27,10 @@ class Header extends React.Component {
           { window.width > 480 ? <p>Add List</p> : <></>}
           <img src={plusIcon} alt="add"/>
         </div>
-        <div className="header__search">
+        {/* <div className="header__search">
           { window.width > 480 ? <p>Search Notes</p> : <></>}
           <img src={searchIcon} alt="add" />
-        </div>
+        </div> */}
         <div className="header__logout" onClick={this.onClickLogOut}>
           { window.width > 480 ? <p>Log out</p> : <></>}
           <img src={logoutIcon} alt="log out" />
