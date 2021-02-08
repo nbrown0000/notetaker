@@ -4,7 +4,7 @@ import { setUser, setRoute } from "../actions"
 import "./Header.css"
 import logoutIcon from "../icons/logout.png";
 import plusIcon from "../icons/056-add.png";
-import searchIcon from "../icons/012-search.png";
+// import searchIcon from "../icons/012-search.png";
 
 
 class Header extends React.Component {
