@@ -1,21 +1,29 @@
 import React from 'react';
-import store from "../store";
 import { setUser, setRoute } from "../actions"
 import "./Header.css"
+import { connect } from "react-redux";
 import logoutIcon from "../icons/logout.png";
 import plusIcon from "../icons/056-add.png";
 // import searchIcon from "../icons/012-search.png";
 
+const mapStateToProps = state => {
+  return {
+    window: state.window
+  };
+}
 
-class Header extends React.Component {
+const mapDispatchToProps = {
+  setUser, setRoute
+}
 
-  onClickLogOut = () => {
-    store.dispatch(setUser(''))
-    store.dispatch(setRoute('login'))
+function ConnectedHeader(props) {
+
+  const onClickLogOut = () => {
+    props.setUser('')
+    props.setRoute('login')
   }
 
-  render() {
-    const window = store.getState().window;
+    const { window } = props;
 
     return (
     <header className="header">
@@ -23,7 +31,7 @@ class Header extends React.Component {
       <h1 className="header__title">Note<span className="emphasise">Taker</span></h1>
 
       <nav className="header__nav">
-        <div className="header__add" onClick={this.props.onClickAddList}>
+        <div className="header__add" >
           { window.width > 480 ? <p>Add List</p> : <></>}
           <img src={plusIcon} alt="add"/>
         </div>
@@ -31,7 +39,7 @@ class Header extends React.Component {
           { window.width > 480 ? <p>Search Notes</p> : <></>}
           <img src={searchIcon} alt="add" />
         </div> */}
-        <div className="header__logout" onClick={this.onClickLogOut}>
+        <div className="header__logout" onClick={onClickLogOut}>
           { window.width > 480 ? <p>Log out</p> : <></>}
           <img src={logoutIcon} alt="log out" />
         </div>
@@ -39,7 +47,11 @@ class Header extends React.Component {
       
     </header>
   )
-  }
 }
+
+const Header = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedHeader);
 
 export default Header;
