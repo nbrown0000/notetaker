@@ -12,15 +12,17 @@ const mapStateToProps = state => {
 }
 
 function ConnectedLists(props) {
-  useEffect(() => {
-    props.getLists(props.user.user_id)
-  }, [])
+  const { user, lists, getLists, getNotes } = props;
 
   useEffect(() => {
-    if(props.lists.length > 0) {
-      props.getNotes(props.lists[0].list_id)
+    getLists(user.user_id)
+  }, [user, getLists])
+
+  useEffect(() => {
+    if(lists.length > 0) {
+      getNotes(lists[0].list_id)
     }
-  }, [props.lists])
+  }, [lists, getNotes])
 
   const compareLists = (a,b) => {
     if(a.list_id < b.list_id) { return -1; }
