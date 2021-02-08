@@ -7,22 +7,23 @@ import { getLists, getNotes } from "../actions"
 const mapStateToProps = state => {
   return {
     user: state.user,
-    lists: state.lists
+    lists: state.lists,
+    notesListId: state.notesListId
   };
 }
 
 function ConnectedLists(props) {
-  const { user, lists, getLists, getNotes } = props;
+  const { user, lists, getLists, getNotes, notesListId } = props;
 
   useEffect(() => {
     getLists(user.user_id)
   }, [user, getLists])
 
   useEffect(() => {
-    if(lists.length > 0) {
+    if(lists.length > 0 && !notesListId) {
       getNotes(lists[0].list_id)
     }
-  }, [lists, getNotes])
+  }, [lists, getNotes, notesListId])
 
   const compareLists = (a,b) => {
     if(a.list_id < b.list_id) { return -1; }
