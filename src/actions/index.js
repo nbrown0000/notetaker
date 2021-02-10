@@ -62,6 +62,17 @@ const updateNotes = (list_id, notes) => {
 }
 
 
+const addList = (user_id, title) => {
+  return function(dispatch) {
+    return fetch("http://localhost:3100/list/addlist/", setOptions({ user_id, title }))
+      .then(response => response.json())
+      .then(data => {
+        dispatch({ type: "SET_LISTS", payload: data });
+      })
+  }
+}
+
+
 const addNote = (list_id, body) => {
   return function(dispatch) {
     fetch("http://localhost:3100/note/addnote/", setOptions({list_id, body}))
@@ -98,5 +109,6 @@ module.exports = {
   updateList,
   updateNotes,
   addNote,
-  deleteNote
+  deleteNote,
+  addList
 }

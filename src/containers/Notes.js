@@ -37,6 +37,12 @@ function ConnectedNotes(props) {
     setNotes(props.notes);
   }, [props.notesTitle, props.notes])
 
+  React.useEffect(() => {
+    if(props.notesTitle === "") {
+      setMode("edit")
+    }
+  }, [props.notesTitle])
+
   const addNoteToUpdateList = note => {
     setNotesToUpdate([...notesToUpdate, note]);
     setNotes(props.notes)
