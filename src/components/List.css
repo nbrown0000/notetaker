@@ -8,6 +8,7 @@
   border: 1px solid #E8E8E8;
   border-radius: 20px;
   background-color: #FFF7B6;
+  min-height: 30px;
 }
 
 .list:hover {
