@@ -1,5 +1,5 @@
 import React from 'react';
-import { setUser, setRoute, addList, getNotes } from "../actions"
+import { setUser, setRoute, addList, getNotes, setIsNewList } from "../actions"
 import "./Header.css"
 import { connect } from "react-redux";
 import logoutIcon from "../icons/logout.png";
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  setUser, setRoute, addList, getNotes
+  setUser, setRoute, addList, getNotes, setIsNewList
 }
 
 function ConnectedHeader(props) {
@@ -26,8 +26,14 @@ function ConnectedHeader(props) {
   }
 
   const onClickAddList = async () => {
+    // add list
+    await props.setIsNewList(true);
     await props.addList(props.user.user_id, "")
-    await props.getNotes(props.lists[props.lists.length - 1].list_id)
+    
+    // get notes for new list
+    // if(props.lists) {
+    //   props.getNotes(props.lists[props.lists.length - 1].list_id)
+    // }
   }
 
     const { window } = props;

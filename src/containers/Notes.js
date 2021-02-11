@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Notes.css";
 import Note from "../components/Note";
 import AddNote from "../components/AddNote";
 import { connect } from "react-redux";
-import { setView, updateList, getLists, getNotes, updateNotes } from "../actions"
+import { setView, updateList, getLists, getNotes, updateNotes, setIsNewList } from "../actions"
 import backIcon from "../icons/back-button.png";
 import editIcon from "../icons/pencil.png";
 import DropdownMenu from "../components/DropdownMenu";
@@ -11,6 +11,8 @@ import tickIcon from "../icons/057-check.png";
 
 const mapStateToProps = state => {
   return {
+    lists: state.lists,
+    isNewList: state.isNewList,
     notes: state.notes,
     notesTitle: state.notesTitle,
     notesListId: state.notesListId,
@@ -20,7 +22,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  setView, updateList, getLists, getNotes, updateNotes
+  setView, updateList, getLists, getNotes, updateNotes, setIsNewList
 }
 
 function ConnectedNotes(props) {
@@ -31,17 +33,17 @@ function ConnectedNotes(props) {
   const [notesToUpdate, setNotesToUpdate] = useState([]);
   const [notes, setNotes] = useState([]);
 
-  React.useEffect(() => {
-    setTitle(props.notesTitle);
-    setColor('#FFF7B6');
-    setNotes(props.notes);
-  }, [props.notesTitle, props.notes])
+  useEffect(() => {
 
-  React.useEffect(() => {
-    if(props.notesTitle === "") {
+    setTitle(props.notesTitle);      
+    setNotes(props.notes);
+    setColor('#FFF7B6');
+
+    if(props.isNewList) {
       setMode("edit")
     }
-  }, [props.notesTitle])
+
+  }, [props.notesTitle, props.notes, props.isNewList])
 
   const addNoteToUpdateList = note => {
     setNotesToUpdate([...notesToUpdate, note]);
@@ -51,9 +53,16 @@ function ConnectedNotes(props) {
   const updateNotes = async () => {
     await props.updateList(props.notesListId, title);
     await props.updateNotes(props.notesListId, notesToUpdate);
-    props.getLists(props.user.user_id);
-    props.getNotes(props.notesListId);
+    await props.getLists(props.user.user_id);
+    await props.getNotes(props.notesListId);
     setMode('view')
+    props.setIsNewList(false);
+  }
+
+  const onTitleLoseFocus = async () => {
+    await props.updateList(props.notesListId, title);
+    await props.getNotes(props.notesListId);
+    props.setIsNewList(false);
   }
 
   const compareNotes = (a,b) => {
@@ -76,12 +85,13 @@ function ConnectedNotes(props) {
         
         <section className="notes__header-leftsection">
           {props.window.width < 481 && BACKBUTTON}
-          {isNewList===true || mode==='edit' ?
+          {mode==='edit' ?
             <input
               autoFocus
               className="notes__heading-edit"
               value={title}
               onChange={e => setTitle(e.target.value)}
+              onBlur={onTitleLoseFocus}
             />
           :
             <h1 className="notes__heading">{title}</h1>

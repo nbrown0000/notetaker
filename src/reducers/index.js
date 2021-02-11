@@ -36,6 +36,12 @@ export default (state, action) => {
         ...state,
         lists: action.payload
       };
+
+    case "SET_IS_NEW_LIST":
+      return {
+        ...state,
+        isNewList: action.payload
+      }
     
     case "SET_NOTES":
       return {
@@ -72,6 +78,7 @@ export default (state, action) => {
       
       return {
         ...state,
+        isNewList: false,
         lists: updatedLists
       }
 

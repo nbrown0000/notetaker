@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import "./Lists.css";
 import List from "../components/List";
 import { connect } from "react-redux";
-import { getLists, getNotes } from "../actions"
+import { getLists, getNotes, setNotesListId } from "../actions"
 
 const mapStateToProps = state => {
   return {
@@ -12,12 +12,22 @@ const mapStateToProps = state => {
   };
 }
 
+const mapDispatchToProps = {
+  setNotesListId, getLists, getNotes
+}
+
 function ConnectedLists(props) {
   const { user, lists, getLists, getNotes, notesListId } = props;
 
   useEffect(() => {
     getLists(user.user_id)
-  }, [user, getLists])
+  }, [user.user_id, getLists])
+
+  useEffect(() => {
+    if(lists.length === 0) {
+      props.setNotesListId(null)
+    }
+  }, [props.setNotesListId])
 
   useEffect(() => {
     if(lists.length > 0 && !notesListId) {
@@ -51,6 +61,9 @@ function ConnectedLists(props) {
     
 }
 
-const Lists = connect(mapStateToProps, {getLists, getNotes})(ConnectedLists);
+const Lists = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedLists);
 
 export default Lists;
