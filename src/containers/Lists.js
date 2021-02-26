@@ -17,7 +17,7 @@ const mapDispatchToProps = {
 }
 
 function ConnectedLists(props) {
-  const { user, lists, getLists, getNotes, notesListId } = props;
+  const { user, lists, getLists, getNotes, notesListId, setNotesListId } = props;
 
   useEffect(() => {
     getLists(user.user_id)
@@ -25,9 +25,9 @@ function ConnectedLists(props) {
 
   useEffect(() => {
     if(lists.length === 0) {
-      props.setNotesListId(null)
+      setNotesListId(null)
     }
-  }, [props.setNotesListId])
+  }, [setNotesListId, lists.length])
 
   useEffect(() => {
     if(lists.length > 0 && !notesListId) {
