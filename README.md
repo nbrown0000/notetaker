@@ -1,19 +1,31 @@
 # Notetaker
-## A note taking App
-### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A notetaking app to keep track of all your notes
 
-## Installation
+## The vision
+A notetaking app to organise notes in multiple ways:
+- notes kept inside projects
+- due dates
+- reminders
+- importance (high, medium, low)
 
-Coming soon
+## Technology stack
+This project was built using:
+- Front End - React, Redux
+- Back End - NodeJS and ExpressJS
 
-## Available Scripts
+## The Journey
+Started simple with a group of todos. Let's keep a list of these called Notes.
+Lets expand our organising to have a group of Notes and call them Lists.
 
-In the project directory, you can run:
+React is awesome! Using state and create components is so quick and effecitve. Add a splash of css here and there!
 
-### `npm start`
+Built Node and Express back-end to provide service for this front-end.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Now it's getting more complicated I need more powerful state management. Enter Redux! And this is a whole other thing. But once you get the hang of it its actually pretty straight forward.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Tinkered with the css some more, added some icons.
+
+Basic MVP functionality works. Still requires a bit of work:
+- Add testing
+- polish styling a bit
+- publish to hosting
